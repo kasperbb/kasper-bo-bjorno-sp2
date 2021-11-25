@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link
+			href="https://api.fontshare.com/css?f[]=general-sans@1,2&f[]=sentient@1,2&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="stylesheet" href="assets/dist/styles.css" />
+	</head>
+	<body id="login" class="bg-gray-100">
+		<div id="preloader">
+			<img src="assets/img/spinner.svg" alt="spinner" />
+		</div>
+
+		<main class="max-w-lg px-5 mx-auto">
+			<div class="w-full p-12 mt-10 bg-white rounded shadow lg:mt-40">
+				<h1 class="mb-4 text-2xl font-medium">Login</h1>
+
+				<form class="flex flex-col gap-4" id="loginForm" name="loginForm">
+					<div class="form-item">
+						<label for="username" class="form-item__label">Username</label>
+						<input type="text" name="username" id="username" class="form-item__input" />
+						<label for="username" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="password" class="form-item__label">Password</label>
+						<input type="password" name="password" id="password" class="form-item__input" />
+						<label for="password" class="form-item__error"></label>
+					</div>
+
+					<button class="btn">Login</button>
+
+					<label for="loginForm" class="text-sm text-red-500" id="loginFormError"></label>
+				</form>
+			</div>
+		</main>
+		<script src="assets/js/index.js" type="module"></script>
+		<script src="assets/js/pages/login.js" type="module"></script>
+	</body>
+</html>

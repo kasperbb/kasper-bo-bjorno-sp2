@@ -1,0 +1,16 @@
+.admin-nav__item {
+	@apply relative flex items-center w-full gap-2 py-2 pl-8 font-medium text-gray-400;
+
+	&:hover {
+		@apply text-gray-500;
+	}
+
+	&--active {
+		@apply text-primary;
+
+		&::before {
+			content: '';
+			@apply absolute left-0 w-1 h-full rounded-r bg-primary;
+		}
+	}
+}

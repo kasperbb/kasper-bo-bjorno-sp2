@@ -1,0 +1,31 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+@import './components/preloader';
+@import './components/layout';
+@import './components/btn';
+@import './components/form';
+@import './components/hero';
+@import './components/product-card';
+@import './components/admin-nav';
+@import './components/category';
+
+@import 'tailwindcss/utilities';
+
+body {
+	font-family: 'General Sans', sans-serif;
+}
+
+p {
+	font-family: 'Sentient', serif;
+}
+
+.h-calc {
+	min-height: calc(100vh - theme(spacing.16));
+}
+
+@screen lg {
+	.h-calc {
+		height: calc(100vh - theme(spacing.16));
+	}
+}

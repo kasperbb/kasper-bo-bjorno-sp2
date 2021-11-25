@@ -1,0 +1,24 @@
+{
+	"name": "kasper-bo-bjorno-sp2",
+	"version": "1.0.0",
+	"description": "",
+	"main": "tailwind.config.js",
+	"scripts": {
+		"build": "postcss assets/css/styles.css -o assets/dist/styles.css",
+		"watch": "watch \"npm run build\" ./assets/css"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"autoprefixer": "^10.4.0",
+		"postcss-cli": "^9.0.2",
+		"postcss-import": "^14.0.2",
+		"tailwindcss": "^2.2.19",
+		"watch": "^1.0.2"
+	},
+	"devDependencies": {
+		"postcss": "^8.3.11",
+		"postcss-nested": "^5.0.6"
+	}
+}

@@ -1,0 +1,19 @@
+.hero {
+	height: 500px;
+
+	&__container {
+		@apply flex flex-col items-start justify-center h-full max-w-6xl gap-4 px-5 mx-auto text-white;
+	}
+
+	&__text {
+		@apply text-5xl font-medium;
+
+		&--span {
+			@apply block font-semibold text-7xl;
+		}
+	}
+
+	&__button {
+		@apply px-12 py-3 font-medium transition border-2 border-white hover:bg-primary hover:border-primary;
+	}
+}

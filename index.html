@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link
+			href="https://api.fontshare.com/css?f[]=general-sans@1,2&f[]=sentient@1,2&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="stylesheet" href="assets/dist/styles.css" />
+	</head>
+	<body id="home">
+		<div id="preloader">
+			<img src="assets/img/spinner.svg" alt="spinner" />
+		</div>
+
+		<header class="hero">
+			<div class="hero__container">
+				<h1 class="hero__text">EXCLUSIVE <span class="hero__text hero__text--span">NEW SHOES</span></h1>
+				<a href="products.html" class="hero__button">Shop Now</a>
+			</div>
+		</header>
+
+		<section class="section">
+			<div class="relative flex items-center justify-center w-full px-10 bg-gray-100 rounded py-14">
+				<ul class="grid grid-cols-1 tracking-widest divide-gray-400 lg:divide-x md:grid-cols-2 lg:grid-cols-4">
+					<li class="items-center gap-4 px-4 py-3 sm:flex">
+						<img src="/assets/img/shipping.png" alt="" class="w-10 h-10" />
+						Free Shipping
+					</li>
+					<li class="items-center gap-4 px-4 py-3 sm:flex">
+						<img src="/assets/img/payment.png" alt="" class="w-10 h-10" />
+						Secure Payment
+					</li>
+					<li class="items-center gap-4 px-4 py-3 sm:flex">
+						<img src="/assets/img/price.png" alt="" class="w-10 h-10" />
+						Competetive Prices
+					</li>
+					<li class="items-center gap-4 px-4 py-3 sm:flex">
+						<img src="/assets/img/support.png" alt="" class="w-10 h-10" />
+						24/7 Support
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="section" id="categories">
+			<div class="grid grid-cols-3 gap-4">
+				<a class="category" href="products.html?category=1">
+					<span class="category__text">Sport Shoes</span>
+					<img class="category__image" src="/assets/img/sports-shoes.jpg" alt="" />
+				</a>
+
+				<a class="category" href="products.html?category=2">
+					<span class="category__text">Sneakers</span>
+					<img class="category__image" src="/assets/img/sneakers.jpg" alt="" />
+				</a>
+
+				<a class="category" href="products.html?category=3">
+					<span class="category__text">Boots</span>
+					<img class="category__image" src="/assets/img/boots.jpg" alt="" />
+				</a>
+			</div>
+		</section>
+
+		<section class="section" id="featured">
+			<h3 class="text-sm text-muted">Featured</h3>
+			<h2 class="mb-5 text-3xl font-bold uppercase text-secondary">Products</h2>
+			<div class="grid gap-5 sm:grid-cols-2 md:grid-cols-4" id="featuredContainer"></div>
+		</section>
+
+		<script src="assets/js/index.js" type="module"></script>
+		<script src="assets/js/pages/index.js" type="module"></script>
+	</body>
+</html>
