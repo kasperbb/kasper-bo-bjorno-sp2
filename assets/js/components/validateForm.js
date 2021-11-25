@@ -59,9 +59,6 @@ export const validateForm = (form, obj) => {
 }
 
 const validateRequired = field => field?.value.length
-
 const validateMinLength = (field, length) => field.value.length > length
-
 const validateMaxLength = (field, length) => field.value.length < length
-
 const validateEmail = field => EMAIL_REGEX.test(field.value)
