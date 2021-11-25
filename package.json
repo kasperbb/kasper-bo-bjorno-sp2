@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "tailwind.config.js",
 	"scripts": {
+		"build": "",
 		"buildcss": "postcss assets/css/styles.css -o assets/dist/styles.css",
 		"watch": "watch \"npm run buildcss\" ./assets/css"
 	},
