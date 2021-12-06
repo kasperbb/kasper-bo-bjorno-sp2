@@ -9,6 +9,10 @@
 		&__pill {
 			@apply px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary;
 
+			&-container {
+				@apply absolute flex gap-2 top-2 left-2;
+			}
+
 			&--featured {
 				@apply bg-green-500;
 			}
@@ -24,6 +28,14 @@
 
 		&__image {
 			@apply object-cover w-full h-full;
+
+			&-container {
+				@apply w-full overflow-hidden h-36;
+			}
+		}
+
+		&__content {
+			@apply p-6;
 		}
 
 		&__price {
@@ -31,7 +43,7 @@
 		}
 
 		&__sale {
-			@apply text-xs text-opacity-70;
+			@apply text-xs text-red-500 font-primary text-opacity-70;
 		}
 
 		&__title {
@@ -39,7 +51,7 @@
 		}
 
 		&__brand {
-			@apply text-xs uppercase font-primary;
+			@apply flex-1 text-xs uppercase font-primary;
 		}
 	}
 }

@@ -7,7 +7,15 @@
 		}
 
 		&__input {
-			@apply w-full px-3 py-1 border border-gray-200 rounded shadow-sm h-9;
+			@apply w-full px-2 py-1 border border-gray-200 rounded shadow-sm h-9;
+
+			&.error {
+				@apply border-red-500;
+			}
+		}
+
+		&__textarea {
+			@apply w-full h-24 px-3 py-2 text-sm border border-gray-200 rounded shadow-sm;
 
 			&.error {
 				@apply border-red-500;
@@ -16,6 +24,10 @@
 
 		&__label {
 			@apply mb-1 text-xs font-medium tracking-wider;
+
+			span {
+				@apply text-gray-600;
+			}
 		}
 
 		&__error {

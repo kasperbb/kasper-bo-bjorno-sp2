@@ -73,19 +73,19 @@ export const productDetails = ({
 `
 
 const renderStock = stock => {
-	if (stock >= 20) {
+	if (stock >= 50) {
 		return `
-            <p class="font-primary text-green-500 text-sm my-3">${stock} in stock</p>
+            <p class="font-primary text-green-500 text-sm my-3">50+ in stock</p>
         `
 	}
 
-	if (stock >= 10) {
+	if (stock >= 20) {
 		return `
             <p class="font-primary text-yellow-500 text-sm my-3">${stock} in stock</p>
         `
 	}
 
-	if (stock >= 3) {
+	if (stock >= 10) {
 		return `
             <p class="font-primary text-red-500 text-sm my-3">${stock} in stock</p>
         `

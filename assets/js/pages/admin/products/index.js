@@ -11,6 +11,6 @@ const deleteEvents = () => {
 	})
 }
 
-loadPage(setProducts('?_sort=created_at:DESC', container, true)).then(() => {
+loadPage(setProducts('?_sort=updated_at:DESC', container, true)).then(() => {
 	deleteEvents()
 })

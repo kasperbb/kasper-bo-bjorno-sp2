@@ -27,6 +27,7 @@ const uploadWidget = cloudinary.createUploadWidget(
 	(error, result) => {
 		if (!error && result && result.event === 'success') {
 			imageUrl = result.info.secure_url
+			widget.textContent += `: ${result.info.original_filename}.${result.info.format}`
 		}
 	}
 )
@@ -37,12 +38,16 @@ const setProductDetails = async () => {
 	imageUrl = product.image_url
 
 	Array.from(form.elements).forEach(el => {
-		if (el.type === 'text' || el.type === 'number') {
+		if (el.type === 'text' || el.type === 'number' || el.type === 'textarea') {
 			el.value = product[el.name]
 		}
 
 		if (el.type === 'select-one') {
 			el.value = product[el.name]?.id || null
+		}
+
+		if (el.type === 'button') {
+			el.textContent = `Image uploaded: ${product['image_url'] || product['image'].name}`
 		}
 
 		if (el.type === 'checkbox') {

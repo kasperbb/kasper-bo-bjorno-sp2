@@ -19,6 +19,7 @@ const uploadWidget = cloudinary.createUploadWidget(
 	(error, result) => {
 		if (!error && result && result.event === 'success') {
 			imageUrl = result.info.secure_url
+			widget.textContent += `: ${result.info.original_filename}.${result.info.format}`
 		}
 	}
 )

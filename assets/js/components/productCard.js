@@ -16,22 +16,20 @@ export const productCard = ({
     <article class="product">
         ${renderCartButton(id)}
         <a href="product.html?id=${id}" class="z-20">
-            <div class="w-full overflow-hidden h-36">
+            <div class="product__image-container">
                 ${renderImage(image_url, image)}
-                <div class="flex gap-2 top-2 left-2 absolute">
+                <div class="product__pill-container">
                     ${featured ? '<span class="product__pill product__pill--featured">featured</span>' : ''}
                     ${on_sale ? '<span class="product__pill product__pill--onsale">on sale</span>' : ''}
                     ${stock <= 0 ? '<span class="product__pill product__pill--outofstock">out of stock</span>' : ''}
                 </div>
             </div>
-            <div class="p-6">
-                ${renderBrand(brand)}
-                <div class="flex justify-between items-end">
-                    <h4 class="product__title">${title}</h4>
-                    <div class="flex items-center">
-                        <p class="product__price">$${price}</p>
-                        ${renderSalePrice(sale_price, on_sale)}
-                    </div>
+            <div class="product__content">
+                <p class="product__brand">${brand?.name}</p>
+                <h4 class="product__title">${title}</h4>
+                <div class="flex items-center">
+                    <p class="product__price">$${price}</p>
+                    ${renderSalePrice(sale_price, on_sale)}
                 </div>
             </div>
         </a>
@@ -74,20 +72,10 @@ const renderImage = (image_url, image) => {
     `
 }
 
-const renderBrand = brand => {
-	if (brand) {
-		return /*html*/ `
-            <p class="product__brand">${brand.name}</p>
-        `
-	}
-
-	return ''
-}
-
 const renderSalePrice = (sale_price, on_sale) => {
 	if (sale_price && on_sale) {
 		return `
-            <del class="text-xs font-primary text-opacity-70 text-red-500">$${sale_price}</del>
+            <del class="product__sale">$${sale_price}</del>
         `
 	}
 
