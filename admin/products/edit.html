@@ -123,21 +123,37 @@
 					<div class="form-item">
 						<label for="title" class="form-item__label">Title</label>
 						<input type="text" name="title" id="title" class="form-item__input" />
+						<label for="title" class="form-item__error"></label>
 					</div>
 
 					<div class="form-item">
 						<label for="price" class="form-item__label">Price</label>
 						<input type="number" name="price" id="price" class="form-item__input" />
+						<label for="price" class="form-item__error"></label>
 					</div>
 
 					<div class="form-item">
 						<label for="sale_price" class="form-item__label">Sale price</label>
 						<input type="number" name="sale_price" id="sale_price" class="form-item__input" />
+						<label for="sale_price" class="form-item__error"></label>
 					</div>
 
 					<div class="form-item">
 						<label for="stock" class="form-item__label">Stock</label>
 						<input type="number" name="stock" id="stock" class="form-item__input" />
+						<label for="stock" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="brand" class="form-item__label">Brand</label>
+						<select name="brand" id="brand" class="form-item__input"></select>
+						<label for="brand" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="category" class="form-item__label">Category</label>
+						<select name="category" id="category" class="form-item__input"></select>
+						<label for="category" class="form-item__error"></label>
 					</div>
 
 					<div class="form-item form-item--span-full">
@@ -159,6 +175,12 @@
 							</svg>
 							Upload image
 						</button>
+					</div>
+
+					<div class="form-item form-item--span-full">
+						<label for="description" class="form-item__label">Description</label>
+						<textarea name="description" id="description" class="form-item__input"></textarea>
+						<label for="description" class="form-item__error"></label>
 					</div>
 
 					<div class="form-item form-item--span-half">
@@ -186,6 +208,8 @@
 					<div class="form-item form-item--span-full">
 						<button type="submit" class="inline-flex w-full btn">Submit</button>
 					</div>
+
+					<span class="hidden alert" id="alert"></span>
 				</form>
 			</main>
 		</div>

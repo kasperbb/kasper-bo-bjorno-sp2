@@ -9,7 +9,10 @@ module.exports = {
 					DEFAULT: '#1bbb99',
 					dark: '#18ab8c',
 				},
-				secondary: '#2d2f3b',
+				secondary: {
+					light: '#3c3f4f',
+					DEFAULT: '#2d2f3b',
+				},
 				tertiary: '#61646d',
 				muted: '#9e9fa3',
 				header: '#c51322',

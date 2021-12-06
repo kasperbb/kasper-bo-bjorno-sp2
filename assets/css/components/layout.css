@@ -1,3 +1,5 @@
-.section {
-	@apply max-w-6xl px-5 mx-auto my-28;
+@layer components {
+	.section {
+		@apply max-w-6xl px-5 mx-auto my-20 lg:my-28;
+	}
 }

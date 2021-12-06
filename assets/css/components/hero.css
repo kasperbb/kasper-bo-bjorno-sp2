@@ -1,19 +1,27 @@
-.hero {
-	height: 500px;
+@layer components {
+	.hero {
+		height: 300px;
 
-	&__container {
-		@apply flex flex-col items-start justify-center h-full max-w-6xl gap-4 px-5 mx-auto text-white;
-	}
+		&__container {
+			@apply flex flex-col items-center justify-center h-full max-w-6xl gap-4 px-5 mx-auto text-white md:items-start;
+		}
 
-	&__text {
-		@apply text-5xl font-medium;
+		&__text {
+			@apply text-3xl font-medium text-center md:text-5xl md:text-left;
 
-		&--span {
-			@apply block font-semibold text-7xl;
+			&--span {
+				@apply block text-5xl font-semibold md:text-7xl;
+			}
+		}
+
+		&__button {
+			@apply px-12 py-3 font-medium transition border-2 border-white hover:bg-primary hover:border-primary;
 		}
 	}
 
-	&__button {
-		@apply px-12 py-3 font-medium transition border-2 border-white hover:bg-primary hover:border-primary;
+	@screen md {
+		.hero {
+			height: 500px;
+		}
 	}
 }

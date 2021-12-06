@@ -1,0 +1,41 @@
+@layer components {
+	.product-details {
+		@apply grid grid-cols-1 mt-5 md:mt-10 md:grid-cols-2 gap-x-8 gap-y-4 section;
+
+		&__image {
+			@apply object-cover object-center w-full rounded h-60 md:h-96;
+		}
+
+		&__container {
+			@apply flex flex-col justify-between w-full;
+		}
+
+		&__brand {
+			@apply text-sm tracking-widest text-gray-500 uppercase;
+		}
+
+		&__title {
+			@apply mb-1 text-3xl font-bold text-gray-900;
+		}
+
+		&__description {
+			@apply text-sm text-muted;
+		}
+
+		&__category {
+			@apply my-5 text-sm font-medium font-primary;
+		}
+
+		&__buttons {
+			@apply flex gap-4;
+		}
+
+		&__pay {
+			@apply w-full btn btn--hover;
+		}
+
+		&__cart {
+			@apply w-full btn btn--hover btn--secondary;
+		}
+	}
+}

@@ -1,12 +1,15 @@
 @import 'tailwindcss/base';
 
 @import 'tailwindcss/components';
+
 @import './components/preloader';
-@import './components/layout';
 @import './components/btn';
+@import './components/layout';
 @import './components/form';
+@import './components/alert';
 @import './components/hero';
 @import './components/product-card';
+@import './components/product-details';
 @import './components/admin-nav';
 @import './components/category';
 

@@ -4,61 +4,67 @@ export const validateForm = (form, obj) => {
 	const validFields = []
 
 	Object.entries(obj).forEach(([name, val]) => {
-		const { required, minLength, maxLength, validEmail } = val
 		const field = form.elements[name]
 		const error = field.nextElementSibling
 
 		error.textContent = ''
+		field.classList.remove('error')
+
 		if (error.tagName !== 'LABEL') {
 			console.log(error.tagName)
-			throw new Error('Field is missing an error element.')
+			throw new Error(`The ${field.name} field is missing a <label> error element.`)
 		}
 
-		if (required) {
-			const valid = validateRequired(field)
-			if (!valid) {
-				validFields.push(valid)
-				error.textContent = `${field.name} is required`
+		Object.keys(val).forEach(property => {
+			if (!validProperties.includes(property)) {
+				throw new Error(`${property} is not a valid property.`)
 			}
-		}
+		})
 
-		if (minLength) {
-			const valid = validateMinLength(field, minLength)
-			if (!valid) {
-				validFields.push(valid)
-				error.textContent = `${field.name} must be at least ${minLength} characters`
+		Object.entries(val).forEach(([key, val]) => {
+			if (validate[key]) {
+				const { value, message } = validate[key](field, val)
+				validFields.push(value)
+				if (!value) {
+					error.textContent = `${field.name.replace(/_/g, ' ')} ${message}`
+					field.classList.add('error')
+				}
 			}
-		}
-
-		if (maxLength) {
-			const valid = validateMaxLength(field, maxLength)
-			if (!valid) {
-				validFields.push(valid)
-				error.textContent = `${field.name} must be less than ${maxLength} characters`
-			}
-		}
-
-		if (minLength && maxLength) {
-			const valid = validateMinLength(field, minLength) && validateMaxLength(field, maxLength)
-			if (!valid) {
-				validFields.push(valid)
-				error.textContent = `${field.name} must be at least ${minLength} characters and less than ${maxLength} characters`
-			}
-		}
-
-		if (validEmail) {
-			const valid = validateEmail(field)
-			if (!valid) {
-				validFields.push(valid)
-				error.textContent = `${field.name} must be a valid email address`
-			}
-		}
+		})
 	})
 
 	return validFields.every(Boolean)
 }
 
-const validateRequired = field => field?.value.length
-const validateMinLength = (field, length) => field.value.length > length
-const validateMaxLength = (field, length) => field.value.length < length
-const validateEmail = field => EMAIL_REGEX.test(field.value)
+const validate = {
+	required: (field, val) => ({
+		value: val ? field?.value.length : true,
+		message: 'is required',
+	}),
+	numeric: (field, val) => ({
+		value: val ? isNumeric(field.value) : true,
+		message: 'must be a numeric value',
+	}),
+	maxLength: (field, length) => ({
+		value: field.value.length < length,
+		message: `must be less than ${length} characters`,
+	}),
+	minLength: (field, length) => ({
+		value: field.value.length > length,
+		message: `must be at more than ${length} characters`,
+	}),
+	validEmail: (field, val) => ({
+		value: val ? EMAIL_REGEX.test(field.value) : false,
+		message: 'must be a valid email address',
+	}),
+}
+
+const validProperties = Object.keys(validate).map(property => property)
+
+const isNumeric = str => {
+	if (typeof str != 'string') return false // we only process strings!
+	return (
+		!isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+		!isNaN(parseFloat(str))
+	) // ...and ensure strings of whitespace fail
+}

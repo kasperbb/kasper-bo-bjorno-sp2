@@ -7,7 +7,79 @@ export const productDetails = ({
 	title,
 	description,
 	price,
-	categories,
+	category,
+	brand,
+	stock,
+}) => /*html*/ `
+    <div class="product-details">
+        <nav aria-label="Breadcrumb" class="md:col-span-2">
+            <ol role="list" class="flex items-center text-sm">
+                <li class="flex items-center">
+                    <a href="/products.html" class="text-sm font-medium text-gray-900">
+                        Products
+                    </a>
+                    <svg
+                        viewBox="0 0 16 20"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        class="w-4 h-5 text-gray-300"
+                    >
+                        <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                    </svg>
+                </li>
+                <li class="flex items-center">
+                    <a href="/products.html?category=${category.id}" class="text-sm font-medium text-gray-900">
+                        ${category.name}
+                    </a>
+                    <svg
+                        viewBox="0 0 16 20"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        class="w-4 h-5 text-gray-300"
+                    >
+                        <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                    </svg>
+                </li>
+                <li class="font-medium text-gray-500 hover:text-gray-600">
+                    ${title}
+                </li>
+            </ol>
+        </nav>
+
+        <img
+            alt="${title}"
+            class="product-details__image"
+            src="${image_url || image?.url || '/assets/img/placeholder.png'}"
+        />
+
+        <div class="product-details__container">
+            <div>
+                <h2 class="product-details__brand">${brand?.name || ''}</h2>
+                <h1 class="product-details__title">${title}</h1>
+                ${renderStock(stock)}
+                <p class="product-details__description">${description || ''}</p>
+                <p class="product-details__category">Category: ${category.name}</p>
+            </div>
+            <div class="product-details__buttons">
+                <button class="product-details__pay">Pay $${price}</button>
+                <button class="product-details__cart cart-button" data-id="${id}" data-type="nonIcon">
+                    ${alreadyInCart(id) ? 'Remove from Cart' : 'Add to Cart'}
+                </button>
+            </div>
+        </div>
+    </div>
+`
+
+export const productDetailstest = ({
+	id,
+	image,
+	image_url,
+	title,
+	description,
+	price,
+	category,
 	brand,
 	stock,
 }) => /*html*/ `
@@ -15,7 +87,7 @@ export const productDetails = ({
         <img
             alt="ecommerce"
             class="lg:w-1/2 w-full lg:h-full h-80 object-cover object-center"
-            src="${image_url ? image_url : image.url}"
+            src="${image_url || image?.url || '/assets/img/placeholder.png'}"
         />
         <div class="lg:w-1/2 w-full flex flex-col">
             <nav class="text-gray-500 bg-gray-100 font-medium text-xs px-5 py-3" aria-label="Breadcrumb">
@@ -30,9 +102,7 @@ export const productDetails = ({
                 </ol>
             </nav>
             <div class="px-5 py-10 flex-1 mb-16">
-                <h2 class="text-sm title-font text-gray-500 tracking-widest uppercase">${
-					brand?.name ? brand.name : ''
-				}</h2>
+                <h2 class="text-sm title-font text-gray-500 tracking-widest uppercase">${brand?.name || ''}</h2>
                 <h1 class="text-gray-900 text-3xl title-font font-bold mb-1">${title}</h1>
                 <div class="flex gap-2 mb-4 py-2">
                     <a class="text-gray-500">
@@ -77,13 +147,10 @@ export const productDetails = ({
                     </a>
                 </div>
                 <div class="flex gap-2">
-                    <p class="font-primary">Categories: </p>
-                    <ul>
-                        ${renderCategories(categories)}
-                    </ul>
+                    <p class="font-primary">Category: ${category?.name}</p>
                 </div>
                 ${renderStock(stock)}
-                <p class="leading-relaxed text-sm mt-10">${description ? description : ''}</p>
+                <p class="leading-relaxed text-sm mt-10">${description || ''}</p>
             </div>
             <div class="fixed bottom-0 right-0 w-full lg:w-1/2 bg-white flex items-center border-t border-gray-200 px-5 py-3">
                 <span class="title-font font-medium text-xl text-gray-900">$${price}</span>
@@ -125,17 +192,6 @@ export const productDetails = ({
         </div>
 	</div>
 `
-
-const renderCategories = categories => {
-	if (!categories.length) return 'No categories'
-	return categories
-		.map(
-			category => /*html*/ `
-        <li class="inline-block">${category.name}</li>
-    `
-		)
-		.join('&#183;')
-}
 
 const renderStock = stock => {
 	if (stock >= 20) {

@@ -1,10 +1,7 @@
 import { logout, isAuthenticated } from '../../services/auth.js'
-import { loadPage } from '../../components/preloader.js'
 
 if (!isAuthenticated) {
 	window.location = '/index.html'
-} else {
-	loadPage()
 }
 
 const logoutButton = document.querySelector('#logoutButton')

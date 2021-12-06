@@ -1,43 +1,45 @@
-.product {
-	@apply relative overflow-hidden transition bg-white rounded shadow-lg hover:shadow-xl;
+@layer components {
+	.product {
+		@apply relative overflow-hidden transition bg-white rounded shadow-lg hover:shadow-xl;
 
-	&__button {
-		@apply absolute z-30 p-2 text-white transition-transform transform rounded-full bg-primary top-24 right-3 hover:scale-110;
-	}
-
-	&__pill {
-		@apply px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary;
-
-		&--featured {
-			@apply bg-green-500;
+		&__button {
+			@apply absolute z-30 p-2 text-white transition-transform transform rounded-full bg-primary top-24 right-3 hover:scale-105 focus:scale-105 hover:bg-primary-light focus:bg-primary-light;
 		}
 
-		&--onsale {
-			@apply bg-secondary;
+		&__pill {
+			@apply px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary;
+
+			&--featured {
+				@apply bg-green-500;
+			}
+
+			&--onsale {
+				@apply bg-secondary;
+			}
+
+			&--outofstock {
+				@apply bg-red-500;
+			}
 		}
 
-		&--outofstock {
-			@apply bg-red-500;
+		&__image {
+			@apply object-cover w-full h-full;
 		}
-	}
 
-	&__image {
-		@apply object-cover w-full h-full;
-	}
+		&__price {
+			@apply inline-block mr-1 text-sm font-medium font-primary;
+		}
 
-	&__price {
-		@apply inline-block mr-1 text-sm font-medium font-primary;
-	}
+		&__sale {
+			@apply text-xs text-opacity-70;
+		}
 
-	&__sale {
-		@apply text-xs text-opacity-70;
-	}
+		&__title {
+			@apply mt-1 text-base font-semibold text-secondary;
+		}
 
-	&__title {
-		@apply mt-1 text-base font-semibold text-secondary;
-	}
-
-	&__brand {
-		@apply text-xs uppercase font-primary;
+		&__brand {
+			@apply text-xs uppercase font-primary;
+		}
 	}
 }

@@ -1,0 +1,13 @@
+@layer components {
+	.alert {
+		@apply p-2 text-sm bg-white border border-gray-100 rounded col-span-full font-primary;
+
+		&--error {
+			@apply text-red-500 bg-red-100 border-red-500;
+		}
+
+		&--success {
+			@apply text-green-500 bg-green-100 border-green-500;
+		}
+	}
+}

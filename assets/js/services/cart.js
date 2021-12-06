@@ -1,5 +1,6 @@
 import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
+import { renderIcon } from '../components/renderIcon.js'
 
 export const getCart = () => {
 	return JSON.parse(localStorage.getItem('cart')) || []
@@ -31,7 +32,6 @@ export const getCartItems = async () => {
 
 export const setCartEvents = () => {
 	const buttons = document.querySelectorAll('.cart-button')
-
 	buttons.forEach(button => {
 		button.addEventListener('click', cartEvent)
 	})
@@ -48,19 +48,11 @@ function cartEvent() {
 
 	if (alreadyInCart(id)) {
 		removeFromCart(id)
-		const html = parseHTML(`
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-				<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-			</svg>
-		`)
+		const html = parseHTML(renderIcon('plus'))
 		this.replaceChildren(nonIcon ? 'Add to Cart' : html)
 	} else {
 		addToCart(id)
-		const html = parseHTML(`
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-				<path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-			</svg>
-		`)
+		const html = parseHTML(renderIcon('minus'))
 		this.replaceChildren(nonIcon ? 'Remove from Cart' : html)
 	}
 }

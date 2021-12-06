@@ -1,15 +1,17 @@
-.category {
-	@apply relative flex items-center justify-center h-56 overflow-hidden rounded;
+@layer components {
+	.category {
+		@apply relative flex items-center justify-center h-56 overflow-hidden rounded;
 
-	&:hover img {
-		@apply transform scale-105;
-	}
+		&:hover img {
+			@apply transform scale-105;
+		}
 
-	&__text {
-		@apply absolute z-20 text-3xl font-semibold text-white uppercase;
-	}
+		&__text {
+			@apply absolute z-20 text-3xl font-semibold text-white uppercase;
+		}
 
-	&__image {
-		@apply z-10 object-cover w-full h-full transition-transform duration-500;
+		&__image {
+			@apply z-10 object-cover w-full h-full transition-transform duration-300;
+		}
 	}
 }

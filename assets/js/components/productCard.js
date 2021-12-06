@@ -1,4 +1,5 @@
 import { alreadyInCart } from '../services/cart.js'
+import { renderIcon } from './renderIcon.js'
 
 export const productCard = ({
 	id,
@@ -13,9 +14,7 @@ export const productCard = ({
 	brand,
 }) => /*html*/ `
     <article class="product">
-        <button class="product__button cart-button" data-id="${id}">
-            ${renderCartIcon(id)}
-        </button>
+        ${renderCartButton(id)}
         <a href="product.html?id=${id}" class="z-20">
             <div class="w-full overflow-hidden h-36">
                 ${renderImage(image_url, image)}
@@ -39,19 +38,19 @@ export const productCard = ({
     </article>
 `
 
-const renderCartIcon = id => {
+const renderCartButton = id => {
 	if (alreadyInCart(id)) {
-		return /*html*/ `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-				<path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-			</svg>
+		return `
+            <button class="product__button cart-button" data-id="${id}" aria-label="Add to Cart">
+                ${renderIcon('minus')}
+            </button>
         `
 	}
 
-	return /*html*/ `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-			<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-		</svg>
+	return `
+        <button class="product__button cart-button" data-id="${id}" aria-label="Remove from Cart">
+            ${renderIcon('plus')}
+        </button>
     `
 }
 

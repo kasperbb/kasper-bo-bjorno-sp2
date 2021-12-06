@@ -4,9 +4,8 @@
 	"description": "",
 	"main": "tailwind.config.js",
 	"scripts": {
-		"build": "",
-		"buildcss": "postcss assets/css/styles.css -o assets/dist/styles.css",
-		"watch": "watch \"npm run buildcss\" ./assets/css"
+		"build:css": "postcss assets/css/styles.css -o assets/dist/styles.css",
+		"watch": "watch \"npm run build:css\" ./assets/css"
 	},
 	"keywords": [],
 	"author": "",
@@ -14,12 +13,14 @@
 	"dependencies": {
 		"autoprefixer": "^10.4.0",
 		"postcss-cli": "^9.0.2",
-		"postcss-import": "^14.0.2",
 		"tailwindcss": "^2.2.19",
 		"watch": "^1.0.2"
 	},
 	"devDependencies": {
+		"@fullhuman/postcss-purgecss": "^4.1.3",
+		"cssnano": "^5.0.12",
 		"postcss": "^8.3.11",
+		"postcss-import": "^14.0.2",
 		"postcss-nested": "^5.0.6"
 	}
 }

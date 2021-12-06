@@ -1,19 +1,20 @@
 import { parseHTML } from '../utils/parseHTML.js'
 import { productCard } from '../components/productCard.js'
-import { getCartItems, removeFromCart } from '../services/cart.js'
-import { loadPage } from '../components/preloader.js'
+import { getCartItems, removeFromCart, getCart } from '../services/cart.js'
+import { loadPage } from '../components/loadPage.js'
 
 const container = document.querySelector('body#cart #cartContainer')
+
+const noItems = parseHTML(`
+	<p>No items in your cart.</p>
+`)
 
 const setCartItems = async () => {
 	const cartItems = await getCartItems()
 	console.log(cartItems)
 
 	if (!cartItems) {
-		const html = parseHTML(`
-			<p>No items in your cart.</p>
-		`)
-		container.append(html)
+		container.append(noItems)
 		return loadPage()
 	}
 
@@ -23,15 +24,19 @@ const setCartItems = async () => {
 	})
 
 	const buttons = document.querySelectorAll('.cart-button')
-
 	buttons.forEach(button => {
 		button.addEventListener('click', setEvents)
 	})
 }
 
 function setEvents() {
-	removeFromCart(this.dataset.id)
+	const cart = getCart()
 	this.parentElement.remove()
+
+	// Cart length will be equal to 1 at the point of clicking the last item
+	if (cart.length === 1) {
+		container.append(noItems)
+	}
 }
 
 loadPage(setCartItems())

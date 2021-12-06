@@ -1,7 +1,8 @@
 import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
 import { productCard } from '../components/productCard.js'
-import { loadPage } from '../components/preloader.js'
+import { loadPage } from '../components/loadPage.js'
+import { setDocumentTitle } from '../components/setDocumentTitle.js'
 
 const container = document.querySelector('body#results #resultsContainer')
 const header = document.querySelector('body#results #resultsHeader')
@@ -10,10 +11,13 @@ const params = new URLSearchParams(window.location.search)
 const search = params.get('search')
 
 const getSearchResults = async () => {
-	const res = await fetch(API_URL + `/products?_where[title_contains]=${search}`)
+	const res = await fetch(
+		API_URL + `/products?_where[_or][0][title_contains]=${search}&_where[_or][1][brand.name_contains]=${search}`
+	)
 	const json = await res.json()
 
 	header.textContent += ` ${search}`
+	setDocumentTitle(`Search: ${search}`)
 
 	json.forEach(product => {
 		const html = parseHTML(productCard(product))

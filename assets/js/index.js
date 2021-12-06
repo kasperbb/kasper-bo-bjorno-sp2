@@ -8,13 +8,15 @@ const nav = parseHTML(navBar())
 body.insertBefore(nav, body.firstChild)
 
 if (nav) {
-	const logoutButton = document.querySelector('#logoutButton')
+	const logoutButtons = document.querySelectorAll('.logout-button')
 	const navMenuButton = document.querySelector('#navMenuButton')
 	const navMenuCloseButton = document.querySelector('#navMenuCloseButton')
 	const navMenu = document.querySelector('#navMenu')
 
-	if (logoutButton) {
-		logoutButton.addEventListener('click', logout)
+	if (logoutButtons) {
+		logoutButtons.forEach(btn => {
+			btn.addEventListener('click', logout)
+		})
 	}
 
 	if (navMenuButton) {

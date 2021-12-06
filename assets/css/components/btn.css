@@ -1,7 +1,17 @@
-.btn {
-	@apply inline-flex items-center justify-center gap-2 px-4 py-2 text-base font-medium text-white border border-transparent rounded shadow-sm bg-primary hover:bg-primary-light;
+@layer components {
+	.btn {
+		@apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white transition-all border border-transparent rounded shadow-sm md:text-base bg-primary hover:bg-primary-light focus:bg-primary-light;
+	}
 
-	&--rounded {
+	.btn--secondary {
+		@apply bg-secondary hover:bg-secondary-light focus:bg-secondary-light;
+	}
+
+	.btn--hover {
+		@apply transform hover:scale-105 focus:scale-105;
+	}
+
+	.btn--rounded {
 		@apply w-10 h-10 px-0 py-0 rounded-full;
 	}
 }

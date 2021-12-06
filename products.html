@@ -40,14 +40,14 @@
 				<div class="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
 					<form class="hidden lg:block">
 						<h3 class="mb-3 font-semibold">Categories</h3>
-						<ul role="list" class="pb-6 space-y-2 text-sm font-medium text-gray-900" id="categoryList"></ul>
+						<ul role="list" class="pb-3 space-y-1 text-sm font-medium text-gray-900" id="categoryList"></ul>
 						<a
 							href="products.html"
-							class="inline-flex items-center p-2 text-sm text-red-500 bg-white rounded shadow-sm"
+							class="inline-flex items-center gap-1 px-2 py-1 text-sm text-white bg-red-500 rounded"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="w-4 h-4"
+								class="w-3 h-3 -mb-0.5"
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"
@@ -59,11 +59,14 @@
 									d="M6 18L18 6M6 6l12 12"
 								/>
 							</svg>
-							Clear
+							clear
 						</a>
 					</form>
 
-					<div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:col-span-3" id="productsContainer"></div>
+					<div
+						class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:col-span-3"
+						id="productsContainer"
+					></div>
 				</div>
 			</section>
 		</main>
