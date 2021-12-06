@@ -7,14 +7,16 @@ module.exports = {
 		require('postcss-nested'),
 		require('tailwindcss'),
 		require('autoprefixer'),
-		// cssnano({
-		// 	preset: 'default',
-		// }),
-		// purgecss({
-		// 	globs: ['node_modules/postcss-import/**/*.js', 'node_modules/postcss-nested/**/*.js'],
-		// 	content: ['**/*.html', 'assets/js/**/*.js'],
-		// 	css: ['assets/css/**/*.css'],
-		// 	defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-		// }),
+		process.env.NETLIFY &&
+			cssnano({
+				preset: 'default',
+			}),
+		process.env.NETLIFY &&
+			purgecss({
+				globs: ['node_modules/postcss-import/**/*.js', 'node_modules/postcss-nested/**/*.js'],
+				content: ['**/*.html', 'assets/js/**/*.js'],
+				css: ['assets/css/**/*.css'],
+				defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+			}),
 	],
 }
