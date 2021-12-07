@@ -51,7 +51,10 @@
 					<label for="sort">Sort By:</label>
 					<select name="sort" id="sort" class="px-2 py-1 border border-gray-200 rounded shadow-sm">
 						<option value="">Relevance</option>
-						<option value="title:ASC">Alphabetical</option>
+						<option value="published_at:DESC">Newest</option>
+						<option value="published_at:ASC">Oldest</option>
+						<option value="title:ASC">Alphabetically: A-Z</option>
+						<option value="title:DESC">Alphabetically: Z-A</option>
 						<option value="price:ASC">Price: Low to High</option>
 						<option value="price:DESC">Price: High to Low</option>
 					</select>
