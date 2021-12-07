@@ -1,13 +1,11 @@
 import { getProduct } from '../../../services/products.js'
-import { API_URL } from '../../../constants/index.js'
-import { getJWT } from '../../../services/auth.js'
-
 import { validateForm } from '../../../components/validateForm.js'
 import { loadPage } from '../../../components/loadPage.js'
 import { editProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
 import { parseHTML } from '../../../utils/parseHTML.js'
+import { setDocumentTitle } from '../../../components/setDocumentTitle.js'
 
 const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
@@ -36,6 +34,7 @@ const setProductDetails = async () => {
 	const product = await getProduct(`/products/${id}`)
 
 	imageUrl = product.image_url
+	setDocumentTitle(`Edit ${product.title} / Admin`)
 
 	Array.from(form.elements).forEach(el => {
 		if (el.type === 'text' || el.type === 'number' || el.type === 'textarea') {

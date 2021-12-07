@@ -1,4 +1,8 @@
 import { logout, isAuthenticated } from '../../services/auth.js'
+import { renderIcon } from '../../components/renderIcon.js'
+import { parseHTML } from '../../utils/parseHTML.js'
+
+let open = false
 
 if (!isAuthenticated) {
 	window.location = '/index.html'
@@ -11,5 +15,8 @@ const toggleAdminNav = document.querySelector('#toggleAdminNav')
 const toggleAdminNavButton = document.querySelector('#toggleAdminNavButton')
 
 toggleAdminNavButton.addEventListener('click', () => {
+	open = !open
 	toggleAdminNav.classList.toggle('hidden')
+	const html = parseHTML(open ? renderIcon('x') : renderIcon('menu'))
+	toggleAdminNavButton.replaceChildren(html)
 })
