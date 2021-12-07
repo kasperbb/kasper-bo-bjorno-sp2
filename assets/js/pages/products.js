@@ -6,13 +6,8 @@ import { loader } from '../components/loader.js'
 import { productCard } from '../components/productCard.js'
 
 const container = document.querySelector('body#products #productsContainer')
-const clearButton = document.querySelector('body#products #clearButton')
 const sortSelect = document.querySelector('body#products #sort')
 const form = document.querySelector('body#products #filterForm')
-
-// const params = new URLSearchParams(window.location.search)
-// const category = params.get('category')
-// const query = category ? `?_where[category.id]=${category}` : ''
 
 const query = []
 let sortVal = ''
@@ -60,6 +55,13 @@ const reloadProducts = async () => {
 
 	container.textContent = ''
 
+	if (!products.length) {
+		const html = parseHTML(`
+			<p class="col-span-3 font-primary font-medium">No products found</p>
+		`)
+		return container.append(html)
+	}
+
 	products.forEach(product => {
 		const html = parseHTML(productCard(product))
 		container.append(html)
@@ -86,6 +88,8 @@ const filter = e => {
 			query.splice(index, 1)
 		}
 	}
+
+	reloadProducts()
 }
 
 const sort = e => {
@@ -93,22 +97,19 @@ const sort = e => {
 	reloadProducts()
 }
 
-const submitForm = async e => {
+const clearForm = e => {
 	e.preventDefault()
-	reloadProducts()
-}
 
-const clearForm = () => {
 	Array.from(form.elements).forEach(el => {
 		el.checked = false
 	})
 	query.splice(0, query.length)
+
 	reloadProducts()
 }
 
 form.addEventListener('change', filter)
-form.addEventListener('submit', submitForm)
+form.addEventListener('submit', clearForm)
 sortSelect.addEventListener('change', sort)
-clearButton.addEventListener('click', clearForm)
 
 loadPage(getCategories(), getBrands(), setProducts(query, container))
