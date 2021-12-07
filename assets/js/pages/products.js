@@ -12,15 +12,25 @@ const form = document.querySelector('body#products #filterForm')
 const query = []
 let sortVal = ''
 
+const params = new URLSearchParams(window.location.search)
+const categoryId = params.get('category')
+
+if (categoryId) {
+	query.push(`?_where[category.id]=${categoryId}`)
+}
+
 const getCategories = async () => {
 	const list = document.querySelector('body#products #categoryList')
 	const res = await fetch(API_URL + '/categories')
 	const categories = await res.json()
 
 	categories.forEach(({ id, name }) => {
+		console.log(+categoryId === +id)
 		const html = parseHTML(`
 			<li class="flex items-center gap-1">
-				<input type="checkbox" name="category_${id}" id="category_${id}" value="${id}" />
+				<input type="checkbox" name="category_${id}" id="category_${id}" value="${id}" 
+					${+categoryId === +id ? `checked` : ''} 
+				/>
 				<label for="category_${id}">${name}</label>
 			</li>
 		`)
@@ -112,4 +122,4 @@ form.addEventListener('change', filter)
 form.addEventListener('submit', clearForm)
 sortSelect.addEventListener('change', sort)
 
-loadPage(getCategories(), getBrands(), setProducts(query, container))
+loadPage(getCategories(), getBrands(), setProducts(`${query.join('&')}`, container))

@@ -3,6 +3,7 @@ import { parseHTML } from '../utils/parseHTML.js'
 import { productDetails } from '../components/productDetails.js'
 import { productCard } from '../components/productCard.js'
 import { loadPage } from '../components/loadPage.js'
+import { setDocumentTitle } from '../components/setDocumentTitle.js'
 
 const params = new URLSearchParams(window.location.search)
 const ID = params.get('id')
@@ -16,6 +17,8 @@ const getProduct = async () => {
 
 	const html = parseHTML(productDetails(json))
 	container.append(html)
+
+	setDocumentTitle(json.title)
 
 	const related = await getRelatedProducts(json.category.id, json.id)
 
