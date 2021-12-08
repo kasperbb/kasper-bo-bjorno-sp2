@@ -2,6 +2,7 @@ import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
 import { setProducts } from '../services/products.js'
 import { loadPage } from '../components/loadPage.js'
+import { setCartEvents } from '../services/cart.js'
 import { loader } from '../components/loader.js'
 import { productCard } from '../components/productCard.js'
 
@@ -76,6 +77,8 @@ const reloadProducts = async () => {
 		const html = parseHTML(productCard(product))
 		container.append(html)
 	})
+
+	setCartEvents()
 }
 
 const filter = e => {
