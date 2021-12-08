@@ -3,7 +3,11 @@
 		@apply relative overflow-hidden transition bg-white rounded shadow-lg hover:shadow-xl;
 
 		&__button {
-			@apply absolute z-30 p-2 text-white transition-transform transform rounded-full bg-primary top-24 right-3 hover:scale-105 focus:scale-105 hover:bg-primary-light focus:bg-primary-light;
+			@apply absolute z-30 flex items-center justify-center p-2 text-white transition-transform transform rounded-full bg-primary top-24 right-3 hover:scale-105 focus:scale-105 hover:bg-primary-light focus:bg-primary-light;
+
+			&.remove {
+				@apply bg-red-400;
+			}
 		}
 
 		&__pill {

@@ -1,4 +1,5 @@
 import { setCartEvents } from '../services/cart.js'
+import { updateCartCount } from '../services/cart.js'
 import { parseHTML } from '../utils/parseHTML.js'
 
 const removePreloader = () => {
@@ -26,6 +27,7 @@ export const loadPage = async (...args) => {
 	try {
 		const res = await Promise.all(args)
 		setCartEvents()
+		updateCartCount()
 		removePreloader()
 		return res
 	} catch (err) {

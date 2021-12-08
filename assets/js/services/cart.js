@@ -6,16 +6,32 @@ export const getCart = () => {
 	return JSON.parse(localStorage.getItem('cart')) || []
 }
 
+let cartCount = getCart().length
+
+export const getCartCount = () => {
+	return getCart().length
+}
+
+export const updateCartCount = () => {
+	const cartCounts = document.querySelectorAll('.cart-count')
+
+	cartCounts.forEach(el => {
+		el.textContent = getCartCount()
+	})
+}
+
 export const addToCart = productId => {
 	const cart = getCart()
 	if (cart.includes(productId)) return
 
 	localStorage.setItem('cart', JSON.stringify([...cart, productId]))
+	updateCartCount()
 }
 
 export const removeFromCart = productId => {
 	const cart = getCart()
 	localStorage.setItem('cart', JSON.stringify(cart.filter(id => id !== productId)))
+	updateCartCount()
 }
 
 export const getCartItems = async () => {
@@ -45,14 +61,19 @@ export const alreadyInCart = id => {
 function cartEvent() {
 	const id = this.dataset.id
 	const nonIcon = this.dataset.type === 'nonIcon'
+	const bag = parseHTML(renderIcon('shoppingBag')),
+		plus = parseHTML(renderIcon('plus', 'w-3 h-3')),
+		minus = parseHTML(renderIcon('minus', 'w-3 h-3'))
 
 	if (alreadyInCart(id)) {
 		removeFromCart(id)
-		const html = parseHTML(renderIcon('plus'))
-		this.replaceChildren(nonIcon ? 'Add to Cart' : html)
+		this.classList.remove('remove')
+		if (nonIcon) return this.replaceChildren('Add to Cart')
+		this.replaceChildren(bag, plus)
 	} else {
 		addToCart(id)
-		const html = parseHTML(renderIcon('minus'))
-		this.replaceChildren(nonIcon ? 'Remove from Cart' : html)
+		this.classList.add('remove')
+		if (nonIcon) return this.replaceChildren('Remove from Cart')
+		this.replaceChildren(bag, minus)
 	}
 }

@@ -29,7 +29,8 @@ export const navBar = () => /*html*/ `
 
                 <div class="items-center justify-end hidden gap-4 md:flex md:flex-1 lg:w-0">
                     ${renderAuthButton()}
-                    <a href="cart.html" class="btn btn--rounded btn--hover ml-8">
+                    <a href="cart.html" class="btn btn--rounded btn--hover ml-8 relative">
+                        <span class="absolute bg-secondary rounded-full w-5 h-5 text-white grid place-content-center text-xs -top-1 -left-2 cart-count">0</span>
                         ${renderIcon('shoppingBag')}
                     </a>
                     ${renderAdminButton()}
@@ -67,7 +68,7 @@ export const navBar = () => /*html*/ `
                             href="cart.html"
                             class="btn w-full"
                         >
-                            ${renderIcon('shoppingBag')}
+                            ${renderIcon('shoppingBag')} <span class="cart-count">(3)</span>
                         </a>
 
                         ${renderMobileAdminButton()}

@@ -11,7 +11,6 @@ const noItems = parseHTML(`
 
 const setCartItems = async () => {
 	const cartItems = await getCartItems()
-	console.log(cartItems)
 
 	if (!cartItems) {
 		container.append(noItems)

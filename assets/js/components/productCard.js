@@ -39,15 +39,17 @@ export const productCard = ({
 const renderCartButton = id => {
 	if (alreadyInCart(id)) {
 		return `
-            <button class="product__button cart-button" data-id="${id}" aria-label="Add to Cart">
-                ${renderIcon('minus')}
+            <button class="product__button cart-button remove" data-id="${id}" aria-label="Add to Cart">
+                ${renderIcon('shoppingBag')}
+                ${renderIcon('minus', 'w-3 h-3')}
             </button>
         `
 	}
 
 	return `
         <button class="product__button cart-button" data-id="${id}" aria-label="Remove from Cart">
-            ${renderIcon('plus')}
+            ${renderIcon('shoppingBag')}
+            ${renderIcon('plus', 'w-3 h-3')}
         </button>
     `
 }
