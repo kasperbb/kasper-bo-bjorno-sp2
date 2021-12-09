@@ -1,6 +1,6 @@
 import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
-import { renderIcon } from '../components/renderIcon.js'
+import { renderIcon } from '../utils/renderIcon.js'
 
 export const getCart = () => {
 	return JSON.parse(localStorage.getItem('cart')) || []

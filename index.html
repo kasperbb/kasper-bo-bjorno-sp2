@@ -52,22 +52,7 @@
 		</header>
 
 		<section class="section" id="categories">
-			<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-				<a class="category" href="products.html?category=1">
-					<span class="category__text">Sport Shoes</span>
-					<img class="category__image" src="/assets/img/sports-shoes.jpg" alt="" />
-				</a>
-
-				<a class="category" href="products.html?category=2">
-					<span class="category__text">Sneakers</span>
-					<img class="category__image" src="/assets/img/sneakers.jpg" alt="" />
-				</a>
-
-				<a class="category" href="products.html?category=3">
-					<span class="category__text">Boots</span>
-					<img class="category__image" src="/assets/img/boots.jpg" alt="" />
-				</a>
-			</div>
+			<div class="grid grid-cols-1 gap-6 lg:grid-cols-3" id="categoriesContainer"></div>
 		</section>
 
 		<section class="section">
@@ -98,6 +83,15 @@
 			<h2 class="mb-5 text-3xl font-bold uppercase text-secondary">Products</h2>
 			<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4" id="featuredContainer"></div>
 		</section>
+
+		<footer class="footer">
+			<p class="footer__copyright">Copyright Kasper Bø Bjørnø @ 2021, All rights reserved</p>
+			<div class="footer__links">
+				<a href="#" class="footer__link">Terms and Conditions</a>
+				<a href="#" class="footer__link">Privacy Policy</a>
+				<a href="#" class="footer__link">FAQ</a>
+			</div>
+		</footer>
 
 		<script src="assets/js/index.js" type="module"></script>
 		<script src="assets/js/pages/index.js" type="module"></script>

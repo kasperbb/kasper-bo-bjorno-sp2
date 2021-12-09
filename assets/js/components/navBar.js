@@ -1,7 +1,5 @@
+import { renderIcon } from '../utils/renderIcon.js'
 import { isAuthenticated } from '../services/auth.js'
-import { renderIcon } from './renderIcon.js'
-
-const navItems = [{ title: 'Products', href: 'products.html' }]
 
 export const navBar = () => /*html*/ `
     <div class="relative bg-white shadow">

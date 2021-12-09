@@ -1,4 +1,4 @@
-import { renderIcon } from './renderIcon.js'
+import { renderIcon } from '../utils/renderIcon.js'
 
 export const adminProductCard = ({ id, image, image_url, title, price }) => /*html*/ `
     <div
@@ -36,6 +36,7 @@ const renderImage = (image_url, image) => {
 	if (image || image_url) {
 		return /*html*/ `
             <img
+                loading="lazy"
                 class="h-28 w-28 object-cover"
                 src="${image_url ? image_url : image.url}"
                 alt=""
@@ -45,6 +46,7 @@ const renderImage = (image_url, image) => {
 
 	return /*html*/ `
         <img
+            loading="lazy"
             class="h-28 w-28 object-cover"
             src="/assets/img/placeholder.png"
             alt=""

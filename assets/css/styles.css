@@ -5,6 +5,7 @@
 @import './components/preloader';
 @import './components/btn';
 @import './components/layout';
+@import './components/footer';
 @import './components/form';
 @import './components/alert';
 @import './components/hero';
@@ -17,6 +18,9 @@
 
 body {
 	font-family: 'General Sans', sans-serif;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 p {

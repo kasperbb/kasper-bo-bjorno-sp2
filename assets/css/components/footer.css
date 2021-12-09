@@ -1,0 +1,15 @@
+.footer {
+	@apply flex items-center justify-between px-12 py-6 mt-auto border-t border-gray-200;
+
+	&__copyright {
+		@apply text-gray-400 font-primary;
+	}
+
+	&__links {
+		@apply flex gap-6;
+	}
+
+	&__link {
+		@apply text-gray-600;
+	}
+}

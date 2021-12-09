@@ -1,9 +1,9 @@
 import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
+import { setDocumentTitle } from '../utils/setDocumentTitle.js'
 import { productDetails } from '../components/productDetails.js'
 import { productCard } from '../components/productCard.js'
 import { loadPage } from '../components/loadPage.js'
-import { setDocumentTitle } from '../components/setDocumentTitle.js'
 
 const params = new URLSearchParams(window.location.search)
 const ID = params.get('id')

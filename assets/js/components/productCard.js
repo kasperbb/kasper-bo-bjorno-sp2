@@ -1,5 +1,5 @@
 import { alreadyInCart } from '../services/cart.js'
-import { renderIcon } from './renderIcon.js'
+import { renderIcon } from '../utils/renderIcon.js'
 
 export const productCard = ({
 	id,
@@ -58,6 +58,7 @@ const renderImage = (image_url, image) => {
 	if (image || image_url) {
 		return /*html*/ `
             <img
+                loading="lazy"
                 src="${image_url ? image_url : image.url}"
                 alt=""
                 class="product__image"
@@ -67,6 +68,7 @@ const renderImage = (image_url, image) => {
 
 	return /*html*/ `
         <img
+            loading="lazy"
             src="${'/assets/img/placeholder.png'}"
             alt=""
             class="product__image"

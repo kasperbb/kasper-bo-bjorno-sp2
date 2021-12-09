@@ -26,7 +26,10 @@ module.exports = {
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			scale: ['responsive', 'hover', 'focus', 'group-hover'],
+			rotate: ['responsive', 'hover', 'focus', 'group-hover'],
+		},
 	},
 	plugins: [],
 }

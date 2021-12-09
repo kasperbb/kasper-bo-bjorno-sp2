@@ -1,11 +1,11 @@
+import { parseHTML } from '../../../utils/parseHTML.js'
+import { setDocumentTitle } from '../../../utils/setDocumentTitle.js'
 import { getProduct } from '../../../services/products.js'
-import { validateForm } from '../../../components/validateForm.js'
-import { loadPage } from '../../../components/loadPage.js'
 import { editProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
-import { parseHTML } from '../../../utils/parseHTML.js'
-import { setDocumentTitle } from '../../../components/setDocumentTitle.js'
+import { validateForm } from '../../../components/validateForm.js'
+import { loadPage } from '../../../components/loadPage.js'
 
 const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
@@ -46,7 +46,8 @@ const setProductDetails = async () => {
 		}
 
 		if (el.type === 'button') {
-			el.textContent = `Image uploaded: ${product['image_url'] || product['image'].name}`
+			if (product['image_url'] || product['image']?.name)
+				el.textContent = `Image uploaded: ${product['image_url'] || product['image']?.name}`
 		}
 
 		if (el.type === 'checkbox') {

@@ -1,6 +1,6 @@
 import { parseHTML } from '../utils/parseHTML.js'
 import { productCard } from '../components/productCard.js'
-import { getCartItems, removeFromCart, getCart } from '../services/cart.js'
+import { getCartItems, getCart } from '../services/cart.js'
 import { loadPage } from '../components/loadPage.js'
 
 const container = document.querySelector('body#cart #cartContainer')
