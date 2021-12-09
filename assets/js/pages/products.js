@@ -17,7 +17,7 @@ const params = new URLSearchParams(window.location.search)
 const categoryId = params.get('category')
 
 if (categoryId) {
-	query.push(`?_where[category.id]=${categoryId}`)
+	query.push(`_where[category.id]=${categoryId}`)
 }
 
 const getCategories = async () => {
@@ -26,7 +26,6 @@ const getCategories = async () => {
 	const categories = await res.json()
 
 	categories.forEach(({ id, name }) => {
-		console.log(+categoryId === +id)
 		const html = parseHTML(`
 			<li class="flex items-center gap-1">
 				<input type="checkbox" name="category_${id}" id="category_${id}" value="${id}" 
@@ -125,4 +124,4 @@ form.addEventListener('change', filter)
 form.addEventListener('submit', clearForm)
 sortSelect.addEventListener('change', sort)
 
-loadPage(getCategories(), getBrands(), setProducts(`${query.join('&')}`, container))
+loadPage(getCategories(), getBrands(), setProducts(`?${query.join('&')}`, container))
