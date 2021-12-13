@@ -1,3 +1,4 @@
+import { CURRENCY_SYMBOL } from '../constants/index.js'
 import { alreadyInCart } from '../services/cart.js'
 
 export const productDetails = ({
@@ -7,6 +8,8 @@ export const productDetails = ({
 	title,
 	description,
 	price,
+	sale_price,
+	on_sale,
 	category,
 	brand,
 	stock,
@@ -72,7 +75,7 @@ export const productDetails = ({
                 </p>
             </div>
             <div class="product-details__buttons">
-                <button class="product-details__pay">Pay $${price}</button>
+                <button class="product-details__pay">${renderPrice(price, sale_price, on_sale)}</button>
                 <button class="product-details__cart cart-button" data-id="${id}" data-type="nonIcon">
                     ${alreadyInCart(id) ? 'Remove from Cart' : 'Add to Cart'}
                 </button>
@@ -103,4 +106,14 @@ const renderStock = stock => {
 	return `
         <p class="font-primary text-red-500 text-sm my-3">Out of stock</p>
     `
+}
+
+const renderPrice = (price, sale_price, on_sale) => {
+	if (sale_price && on_sale) {
+		return `
+            Pay ${CURRENCY_SYMBOL}${sale_price}
+        `
+	}
+
+	return `Pay ${CURRENCY_SYMBOL}${price}`
 }
