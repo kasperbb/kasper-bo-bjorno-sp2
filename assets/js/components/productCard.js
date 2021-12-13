@@ -15,7 +15,7 @@ export const productCard = ({
 	brand,
 }) => /*html*/ `
     <article class="product">
-        ${renderCartButton(id)}
+        ${renderCartButton(id, price, sale_price, on_sale)}
         <a href="product.html?id=${id}" class="z-20">
             <div class="product__image-container">
                 ${renderImage(image_url, image)}
@@ -36,10 +36,12 @@ export const productCard = ({
     </article>
 `
 
-const renderCartButton = id => {
+const renderCartButton = (id, price, sale_price, on_sale) => {
 	if (alreadyInCart(id)) {
 		return `
-            <button class="product__button cart-button remove" data-id="${id}" aria-label="Add to Cart">
+            <button class="product__button cart-button remove" data-id="${id}" data-price="${
+			on_sale ? sale_price : price
+		}" aria-label="Add to Cart">
                 ${renderIcon('shoppingBag')}
                 ${renderIcon('minus', 'w-3 h-3')}
             </button>
@@ -47,7 +49,9 @@ const renderCartButton = id => {
 	}
 
 	return `
-        <button class="product__button cart-button" data-id="${id}" aria-label="Remove from Cart">
+        <button class="product__button cart-button" data-id="${id}" data-price="${
+		on_sale ? sale_price : price
+	}" aria-label="Remove from Cart">
             ${renderIcon('shoppingBag')}
             ${renderIcon('plus', 'w-3 h-3')}
         </button>

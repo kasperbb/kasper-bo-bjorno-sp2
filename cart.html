@@ -9,10 +9,7 @@
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet" />
 
 		<link href="https://api.fontshare.com/css?f[]=general-sans&display=swap" rel="stylesheet" />
 
@@ -40,8 +37,15 @@
 		</div>
 
 		<section class="max-w-6xl px-5 mx-auto py-28">
-			<h2 class="pb-3 mb-5 text-3xl font-bold uppercase border-b border-gray-200 text-secondary">My Cart</h2>
-			<div class="grid gap-5 pt-3 sm:grid-cols-2 md:grid-cols-4" id="cartContainer"></div>
+			<div class="flex justify-between pb-3 mb-5 text-3xl font-bold uppercase border-b border-gray-200 text-secondary">
+				<h1>My Cart</h1>
+				<h2>
+					Total:
+					<span class="text-primary" id="total"></span>
+				</h2>
+			</div>
+			<div id="stockWarning"></div>
+			<div class="grid gap-5 py-3 sm:grid-cols-2 md:grid-cols-4" id="cartContainer"></div>
 		</section>
 
 		<footer class="footer">

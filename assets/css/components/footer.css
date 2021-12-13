@@ -2,7 +2,7 @@
 	@apply w-full px-5 mt-auto bg-white border-t border-gray-200;
 
 	&__container {
-		@apply w-full mx-auto max-w-7xl;
+		@apply w-full max-w-6xl mx-auto;
 	}
 
 	&__content {

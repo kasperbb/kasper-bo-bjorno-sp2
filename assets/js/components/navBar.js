@@ -3,7 +3,7 @@ import { isAuthenticated } from '../services/auth.js'
 
 export const navBar = () => /*html*/ `
     <div class="relative bg-white shadow">
-        <div class="px-5 mx-auto max-w-7xl">
+        <div class="px-5 mx-auto max-w-6xl">
             <div class="flex items-center justify-between py-5 md:py-3 md:justify-start">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
                     <a href="index.html">
