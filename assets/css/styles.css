@@ -12,7 +12,6 @@
 @import './components/product-card';
 @import './components/product-details';
 @import './components/admin-nav';
-@import './components/category';
 
 @import 'tailwindcss/utilities';
 
@@ -21,10 +20,6 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-}
-
-p {
-	font-family: 'Sentient', serif;
 }
 
 .h-calc {

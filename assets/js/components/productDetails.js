@@ -61,7 +61,15 @@ export const productDetails = ({
                 <h1 class="product-details__title">${title}</h1>
                 ${renderStock(stock)}
                 <p class="product-details__description">${description || ''}</p>
-                <p class="product-details__category">Category: ${category.name}</p>
+                <p class="product-details__category">
+                    Category:
+                    <a 
+                        href="/products.html?category=${category.id}"
+                        class="product-details__category-link"
+                    >
+                        ${category.name}
+                    </a>
+                </p>
             </div>
             <div class="product-details__buttons">
                 <button class="product-details__pay">Pay $${price}</button>

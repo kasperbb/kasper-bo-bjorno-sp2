@@ -1,3 +1,4 @@
+import { CURRENCY_SYMBOL } from '../constants/index.js'
 import { alreadyInCart } from '../services/cart.js'
 import { renderIcon } from '../utils/renderIcon.js'
 
@@ -28,7 +29,7 @@ export const productCard = ({
                 <p class="product__brand">${brand?.name}</p>
                 <h4 class="product__title">${title}</h4>
                 <div class="flex items-center">
-                    <p class="product__price">$${price}</p>
+                    <p class="product__price">${CURRENCY_SYMBOL}${price}</p>
                     ${renderSalePrice(sale_price, on_sale)}
                 </div>
             </div>
@@ -79,7 +80,7 @@ const renderImage = (image_url, image) => {
 const renderSalePrice = (sale_price, on_sale) => {
 	if (sale_price && on_sale) {
 		return `
-            <del class="product__sale">$${sale_price}</del>
+            <del class="product__sale">${CURRENCY_SYMBOL}${sale_price}</del>
         `
 	}
 

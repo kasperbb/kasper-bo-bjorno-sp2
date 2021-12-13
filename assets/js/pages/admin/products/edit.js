@@ -1,11 +1,11 @@
 import { parseHTML } from '../../../utils/parseHTML.js'
 import { setDocumentTitle } from '../../../utils/setDocumentTitle.js'
+import { validateForm } from '../../../utils/validateForm.js'
+import { loadPage } from '../../../utils/loadPage.js'
 import { getProduct } from '../../../services/products.js'
 import { editProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
-import { validateForm } from '../../../components/validateForm.js'
-import { loadPage } from '../../../components/loadPage.js'
 
 const params = new URLSearchParams(window.location.search)
 const id = params.get('id')

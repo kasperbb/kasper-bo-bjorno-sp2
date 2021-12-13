@@ -1,7 +1,7 @@
 import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
-import { setProducts } from '../services/products.js'
-import { loadPage } from '../components/loadPage.js'
+import { loadPage } from '../utils/loadPage.js'
+import { setProducts, getProducts } from '../services/products.js'
 import { setCartEvents } from '../services/cart.js'
 import { loader } from '../components/loader.js'
 import { productCard } from '../components/productCard.js'
@@ -59,9 +59,7 @@ const reloadProducts = async () => {
 	container.replaceChildren(html)
 
 	const sortQuery = sortVal ? `&_sort=${sortVal}` : ``
-
-	const res = await fetch(API_URL + `/products?${query.join('&')}${sortQuery}`)
-	const products = await res.json()
+	const products = await getProducts(`?${query.join('&')}${sortQuery}`)
 
 	container.textContent = ''
 

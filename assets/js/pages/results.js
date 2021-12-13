@@ -1,8 +1,8 @@
 import { API_URL } from '../constants/index.js'
 import { parseHTML } from '../utils/parseHTML.js'
 import { setDocumentTitle } from '../utils/setDocumentTitle.js'
+import { loadPage } from '../utils/loadPage.js'
 import { productCard } from '../components/productCard.js'
-import { loadPage } from '../components/loadPage.js'
 
 const container = document.querySelector('body#results #resultsContainer')
 const header = document.querySelector('body#results #resultsHeader')

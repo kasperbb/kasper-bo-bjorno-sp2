@@ -6,8 +6,8 @@ export const navBar = () => /*html*/ `
         <div class="px-5 mx-auto max-w-7xl sm:px-6">
             <div class="flex items-center justify-between py-5 md:py-3 md:justify-start">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="index.html" class="font-semibold">
-                        Athes
+                    <a href="index.html">
+                        <img src="/assets/img/logo.png" class="w-10 h-10" />
                     </a>
                 </div>
 
@@ -77,7 +77,7 @@ export const navBar = () => /*html*/ `
     </div>
 `
 
-const renderSearchBar = () => `
+const renderSearchBar = () => /*html*/ `
     <form
         action="results.html"
         class="
@@ -118,7 +118,7 @@ const renderSearchBar = () => `
 
 const renderAdminButton = () => {
 	if (isAuthenticated) {
-		return `
+		return /*html*/ `
             <a href="admin/products/index.html" class="btn btn--rounded btn--hover" aria-label="Go to admin">
                 ${renderIcon('cog')}
             </a>
@@ -130,17 +130,17 @@ const renderAdminButton = () => {
 
 const renderAuthButton = () => {
 	if (isAuthenticated) {
-		return `
+		return /*html*/ `
             <button class="text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-900 logout-button">Sign out</button>
         `
 	}
 
-	return `<a href="login.html" class="text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-900">Sign in</a>`
+	return /*html*/ `<a href="login.html" class="text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-900">Sign in</a>`
 }
 
 const renderMobileAdminButton = () => {
 	if (isAuthenticated) {
-		return `
+		return /*html*/ `
             <a href="admin/products/index.html" class="btn w-full" aria-label="Go to admin">
                 ${renderIcon('cog')}
             </a>
@@ -152,7 +152,7 @@ const renderMobileAdminButton = () => {
 
 const renderMobileAuthButton = () => {
 	if (isAuthenticated) {
-		return `
+		return /*html*/ `
             <button
                 href="login.html"
                 class="btn w-full logout-button"
@@ -162,7 +162,7 @@ const renderMobileAuthButton = () => {
         `
 	}
 
-	return `
+	return /*html*/ `
         <a
             href="login.html"
             class="btn w-full"

@@ -1,7 +1,7 @@
 import { API_URL } from '../constants/index.js'
+import { validateForm } from '../utils/validateForm.js'
+import { loadPage } from '../utils/loadPage.js'
 import { setToken, setUser } from '../services/auth.js'
-import { loadPage } from '../components/loadPage.js'
-import { validateForm } from '../components/validateForm.js'
 
 const form = document.querySelector('body#login #loginForm')
 const error = document.querySelector('body#login #loginFormError')

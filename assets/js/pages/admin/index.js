@@ -1,6 +1,6 @@
-import { logout, isAuthenticated } from '../../services/auth.js'
 import { renderIcon } from '../../utils/renderIcon.js'
 import { parseHTML } from '../../utils/parseHTML.js'
+import { logout, isAuthenticated } from '../../services/auth.js'
 
 let open = false
 

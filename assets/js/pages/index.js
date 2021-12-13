@@ -1,5 +1,5 @@
 import { API_URL } from '../constants/index.js'
-import { loadPage } from '../components/loadPage.js'
+import { loadPage } from '../utils/loadPage.js'
 import { setProducts } from '../services/products.js'
 import { setCategories } from '../services/categories.js'
 

@@ -1,9 +1,9 @@
 import { parseHTML } from '../../../utils/parseHTML.js'
+import { validateForm } from '../../../utils/validateForm.js'
+import { loadPage } from '../../../utils/loadPage.js'
 import { addProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
-import { validateForm } from '../../../components/validateForm.js'
-import { loadPage } from '../../../components/loadPage.js'
 
 const form = document.querySelector('body#adminProductsAdd #addForm')
 const alert = document.querySelector('body#adminProductsAdd #alert')

@@ -19,11 +19,15 @@
 		}
 
 		&__description {
-			@apply text-sm text-muted;
+			@apply text-sm text-gray-600;
 		}
 
 		&__category {
 			@apply my-5 text-sm font-medium font-primary;
+
+			&-link {
+				@apply ml-1 font-normal hover:underline;
+			}
 		}
 
 		&__buttons {

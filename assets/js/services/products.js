@@ -4,14 +4,13 @@ import { getJWT } from './auth.js'
 import { productCard } from '../components/productCard.js'
 import { adminProductCard } from '../components/adminProductCard.js'
 
-export const getProduct = async query => {
-	const res = await fetch(API_URL + query)
+export const getProducts = async (query = '') => {
+	const res = await fetch(`${API_URL}/products${query}`)
 	return await res.json()
 }
 
 export const setProducts = async (query, container, isAdmin) => {
-	const res = await fetch(`${API_URL}/products${query}`)
-	const products = await res.json()
+	const products = await getProducts(query)
 
 	if (!products.length) {
 		const html = parseHTML(`
@@ -26,6 +25,11 @@ export const setProducts = async (query, container, isAdmin) => {
 	})
 
 	return products
+}
+
+export const getProduct = async query => {
+	const res = await fetch(API_URL + query)
+	return await res.json()
 }
 
 export const addProduct = async body => {
