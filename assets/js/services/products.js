@@ -36,10 +36,9 @@ export const addProduct = async body => {
 	const res = await fetch(`${API_URL}/products`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
 			Authorization: `Bearer ${getJWT()}`,
 		},
-		body: JSON.stringify(body),
+		body: body,
 	})
 	return await res.json()
 }
@@ -48,10 +47,9 @@ export const editProduct = async (id, body) => {
 	const res = await fetch(`${API_URL}/products/${id}`, {
 		method: 'PUT',
 		headers: {
-			'Content-Type': 'application/json',
 			Authorization: `Bearer ${getJWT()}`,
 		},
-		body: JSON.stringify(body),
+		body: body,
 	})
 	return await res.json()
 }

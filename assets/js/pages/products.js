@@ -4,7 +4,7 @@ import { loadPage } from '../utils/loadPage.js'
 import { setProducts, getProducts } from '../services/products.js'
 import { setCartEvents } from '../services/cart.js'
 import { loader } from '../components/loader.js'
-import { productCard } from '../components/productCard.js'
+import { productCard, productCardSkeleton } from '../components/productCard.js'
 
 const container = document.querySelector('body#products #productsContainer')
 const sortSelect = document.querySelector('body#products #sort')
@@ -12,6 +12,8 @@ const form = document.querySelector('body#products #filterForm')
 
 const query = []
 let sortVal = ''
+
+let length = 0
 
 const params = new URLSearchParams(window.location.search)
 const categoryId = params.get('category')
@@ -55,8 +57,8 @@ const getBrands = async () => {
 }
 
 const reloadProducts = async () => {
-	const html = parseHTML(loader)
-	container.replaceChildren(html)
+	const skeletons = Array.from(Array(length).slice(0, 9)).map(() => parseHTML(productCardSkeleton))
+	container.replaceChildren(...skeletons)
 
 	const sortQuery = sortVal ? `&_sort=${sortVal}` : ``
 	const products = await getProducts(`?${query.join('&')}${sortQuery}`)
@@ -69,6 +71,8 @@ const reloadProducts = async () => {
 		`)
 		return container.append(html)
 	}
+
+	length = products.length
 
 	products.forEach(product => {
 		const html = parseHTML(productCard(product))
@@ -122,4 +126,6 @@ form.addEventListener('change', filter)
 form.addEventListener('submit', clearForm)
 sortSelect.addEventListener('change', sort)
 
-loadPage(getCategories(), getBrands(), setProducts(`?${query.join('&')}`, container))
+loadPage(getCategories(), getBrands(), setProducts(`?${query.join('&')}`, container)).then(res => {
+	length = res[2].length
+})

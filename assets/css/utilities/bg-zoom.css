@@ -1,0 +1,5 @@
+@layer utilities {
+	.bg-zoom-300 {
+		background-size: 300%;
+	}
+}

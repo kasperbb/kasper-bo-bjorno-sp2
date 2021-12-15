@@ -1,0 +1,5 @@
+@layer utilities {
+	.cursor-zoom-in {
+		cursor: zoom-in;
+	}
+}

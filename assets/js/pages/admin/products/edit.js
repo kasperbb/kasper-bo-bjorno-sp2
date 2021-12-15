@@ -7,47 +7,30 @@ import { editProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
 
-const params = new URLSearchParams(window.location.search)
-const id = params.get('id')
+const id = new URLSearchParams(window.location.search).get('id')
 
 const header = document.querySelector('body#adminProductsEdit #editHeader')
 const form = document.querySelector('body#adminProductsEdit #editForm')
 const alert = document.querySelector('body#adminProductsEdit #alert')
-const widget = document.querySelector('#upload_widget')
-
-let imageUrl = null
-
-const uploadWidget = cloudinary.createUploadWidget(
-	{
-		cloudName: 'dbpqiu09c',
-		uploadPreset: 'fgnxqjbc',
-	},
-	(error, result) => {
-		if (!error && result && result.event === 'success') {
-			imageUrl = result.info.secure_url
-			widget.textContent += `: ${result.info.original_filename}.${result.info.format}`
-		}
-	}
-)
+const image = document.querySelector('body#adminProductsEdit input[type="file"]')
+const fileName = document.querySelector('#fileName')
 
 const setProductDetails = async () => {
 	const product = await getProduct(`/products/${id}`)
 
-	imageUrl = product.image_url
 	setDocumentTitle(`Edit ${product.title} / Admin`)
 
 	Array.from(form.elements).forEach(el => {
-		if (el.type === 'text' || el.type === 'number' || el.type === 'textarea') {
+		if (['text', 'number', 'textarea'].includes(el.type)) {
 			el.value = product[el.name]
+		}
+
+		if (el.type === 'file') {
+			fileName.textContent = product[el.name]?.name || 'No image chosen'
 		}
 
 		if (el.type === 'select-one') {
 			el.value = product[el.name]?.id || null
-		}
-
-		if (el.type === 'button') {
-			if (product['image_url'] || product['image']?.name)
-				el.textContent = `Image uploaded: ${product['image_url'] || product['image']?.name}`
 		}
 
 		if (el.type === 'checkbox') {
@@ -93,22 +76,26 @@ const submitForm = async e => {
 
 	if (!valid) return
 
-	const [title, price, sale_price, stock, brand, category, image, description, on_sale, featured] = e.target
+	const formElements = form.elements
+	const formData = new FormData()
+	const data = {}
 
-	const body = {
-		title: title.value,
-		price: price.value,
-		sale_price: sale_price.value,
-		stock: stock.value,
-		brand: +brand.value,
-		category: +category.value,
-		image_url: imageUrl,
-		description: description.value,
-		on_sale: on_sale.checked,
-		featured: featured.checked,
-	}
+	Array.from(formElements).forEach(el => {
+		if (!['submit', 'file'].includes(el.type)) {
+			data[el.name] = el.value
+		}
 
-	const res = await editProduct(id, body)
+		if (el.type === 'file') {
+			Array.from(el.files).forEach(file => {
+				formData.append(`files.${el.name}`, file, file.name)
+			})
+		}
+	})
+
+	formData.append('data', JSON.stringify(data))
+
+	const res = await editProduct(id, formData)
+
 	setAlert(res)
 }
 
@@ -124,15 +111,15 @@ const setAlert = ({ error, message, statusCode, title }) => {
 	}
 }
 
+const setFileName = e => {
+	fileName.textContent = Array.from(e.target.files)
+		.map(el => el.name)
+		.join(', ')
+}
+
 const setEvents = () => {
-	widget.addEventListener(
-		'click',
-		() => {
-			uploadWidget.open()
-		},
-		false
-	)
 	form.addEventListener('submit', submitForm)
+	image.addEventListener('change', setFileName)
 }
 
 loadPage(setBrands(), setCategories()).then(() => {

@@ -1,19 +1,7 @@
 import { CURRENCY_SYMBOL } from '../constants/index.js'
 import { alreadyInCart } from '../services/cart.js'
 
-export const productDetails = ({
-	id,
-	image,
-	image_url,
-	title,
-	description,
-	price,
-	sale_price,
-	on_sale,
-	category,
-	brand,
-	stock,
-}) => /*html*/ `
+export const productDetails = ({ id, image, image_url, title, description, price, sale_price, on_sale, category, brand, stock }) => /*html*/ `
     <div class="product-details">
         <nav aria-label="Breadcrumb" class="md:col-span-2">
             <ol role="list" class="flex items-center text-sm">
@@ -54,11 +42,13 @@ export const productDetails = ({
         <img
             loading="lazy"
             alt="${title}"
-            class="product-details__image"
+            class="product-details__image cursor-zoom-in"
             src="${image_url || image?.url || '/assets/img/placeholder.png'}"
+            id="productImg"
         />
 
         <div class="product-details__container">
+            <div class="rounded hidden shadow-lg absolute border border-gray-400 w-80 h-80 z-30 bg-no-repeat bg-zoom-300" id="preview"></div>
             <div>
                 <h2 class="product-details__brand">${brand?.name || ''}</h2>
                 <h1 class="product-details__title">${title}</h1>

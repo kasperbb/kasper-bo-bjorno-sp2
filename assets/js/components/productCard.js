@@ -2,32 +2,25 @@ import { CURRENCY_SYMBOL } from '../constants/index.js'
 import { alreadyInCart } from '../services/cart.js'
 import { renderIcon } from '../utils/renderIcon.js'
 
-export const productCard = ({
-	id,
-	image,
-	image_url,
-	price,
-	sale_price,
-	title,
-	featured,
-	on_sale,
-	stock,
-	brand,
-}) => /*html*/ `
-    <article class="product">
+export const productCard = ({ id, image, image_url, price, sale_price, title, featured, on_sale, stock, brand }) => /*html*/ `
+    <article class="relative overflow-hidden transition bg-white rounded shadow-lg hover:shadow-xl focus:shadow-xl group">
         ${renderCartButton(id, price, sale_price, on_sale)}
         <a href="product.html?id=${id}" class="z-20">
-            <div class="product__image-container">
+            <div class="w-full overflow-hidden h-36">
                 ${renderImage(image_url, image)}
-                <div class="product__pill-container">
-                    ${featured ? '<span class="product__pill product__pill--featured">featured</span>' : ''}
-                    ${on_sale ? '<span class="product__pill product__pill--onsale">on sale</span>' : ''}
-                    ${stock <= 0 ? '<span class="product__pill product__pill--outofstock">out of stock</span>' : ''}
+                <div class="absolute flex gap-2 transition-opacity duration-300 top-2 left-2 group-hover:opacity-0">
+                    ${featured ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-green-500">featured</span>' : ''}
+                    ${on_sale ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary">on sale</span>' : ''}
+                    ${
+						stock <= 0
+							? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-red-500">out of stock</span>'
+							: ''
+					}
                 </div>
             </div>
-            <div class="product__content">
-                <p class="product__brand">${brand?.name}</p>
-                <h4 class="product__title">${title}</h4>
+            <div class="p-6">
+                <p class="flex-1 text-xs uppercase font-primary">${brand?.name}</p>
+                <h4 class="mt-1 text-base font-semibold text-secondary">${title}</h4>
                 <div class="flex items-center">
                     ${renderPrice(price, sale_price, on_sale)}
                 </div>
@@ -36,10 +29,23 @@ export const productCard = ({
     </article>
 `
 
+export const productCardSkeleton = `
+    <article class="overflow-hidden transition bg-white rounded shadow-lg hover:shadow-xl focus:shadow-xl">
+        <div class="z-20">
+            <div class="w-full overflow-hidden bg-gray-300 animate-pulse h-36"></div>
+            <div class="p-6">
+                <div class="flex-1 w-8 h-4 bg-gray-300 animate-pulse"></div>
+                <div class="w-24 h-4 mt-1 bg-gray-300 animate-pulse"></div>
+                <div class="h-4 mt-1 bg-gray-300 w-14 animate-pulse"></div>
+            </div>
+        </div>
+    </article>
+`
+
 const renderCartButton = (id, price, sale_price, on_sale) => {
 	if (alreadyInCart(id)) {
 		return `
-            <button class="product__button cart-button remove" data-id="${id}" data-price="${
+            <button class="absolute z-30 flex items-center justify-center p-2 text-white transition-transform transform rounded-full bg-red-400 top-24 right-3 hover:scale-105 focus:scale-105 hover:bg-red-400 focus:bg-red-400 cart-button" data-id="${id}" data-price="${
 			on_sale ? sale_price : price
 		}" aria-label="Add to Cart">
                 ${renderIcon('shoppingBag')}
@@ -49,7 +55,7 @@ const renderCartButton = (id, price, sale_price, on_sale) => {
 	}
 
 	return `
-        <button class="product__button cart-button" data-id="${id}" data-price="${
+        <button class="absolute z-30 flex items-center justify-center p-2 text-white transition-transform transform rounded-full bg-primary top-24 right-3 hover:scale-105 focus:scale-105 hover:bg-primary-light focus:bg-primary-light cart-button" data-id="${id}" data-price="${
 		on_sale ? sale_price : price
 	}" aria-label="Remove from Cart">
             ${renderIcon('shoppingBag')}
@@ -65,7 +71,7 @@ const renderImage = (image_url, image) => {
                 loading="lazy"
                 src="${image_url ? image_url : image.url}"
                 alt=""
-                class="product__image"
+                class="object-cover w-full h-full"
             />
         `
 	}
@@ -75,7 +81,7 @@ const renderImage = (image_url, image) => {
             loading="lazy"
             src="${'/assets/img/placeholder.png'}"
             alt=""
-            class="product__image"
+            class="object-cover w-full h-full"
         />
     `
 }

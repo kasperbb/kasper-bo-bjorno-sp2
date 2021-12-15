@@ -1,6 +1,6 @@
 @layer components {
 	.form-item {
-		@apply flex flex-col items-start col-span-2 lg:col-span-1;
+		@apply inline-flex flex-col items-start col-span-6 lg:col-span-3;
 
 		option {
 			@apply text-sm;
@@ -38,28 +38,16 @@
 			}
 		}
 
-		&--span-1 {
-			@apply col-span-1;
-		}
-
-		&--span-2 {
-			@apply col-span-2;
-		}
-
-		&--span-3 {
-			@apply col-span-3;
-		}
-
-		&--span-4 {
-			@apply col-span-4;
-		}
-
 		&--span-full {
-			@apply col-span-2;
+			@apply col-span-6;
 		}
 
 		&--span-half {
-			@apply col-span-1;
+			@apply col-span-3;
+		}
+
+		&--span-third {
+			@apply col-span-2;
 		}
 	}
 
@@ -90,6 +78,6 @@
 	}
 
 	.file-upload {
-		@apply flex items-center w-full gap-1 px-3 py-1 text-sm border border-gray-200 rounded shadow-sm cursor-pointer h-9;
+		@apply flex items-center gap-1 px-3 py-1 text-sm border border-gray-200 rounded shadow-sm cursor-pointer h-9;
 	}
 }

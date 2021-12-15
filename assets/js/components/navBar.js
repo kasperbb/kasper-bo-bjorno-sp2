@@ -6,8 +6,8 @@ export const navBar = () => /*html*/ `
         <div class="px-5 mx-auto max-w-6xl">
             <div class="flex items-center justify-between py-5 md:py-3 md:justify-start">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="index.html">
-                        <img src="/assets/img/logo.png" class="w-10 h-10" />
+                    <a href="index.html" aria-label="Go to homepage">
+                        <img src="/assets/img/logo.png" alt="Logo" class="w-10 h-10" />
                     </a>
                 </div>
 

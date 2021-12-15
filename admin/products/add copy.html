@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add Product / Admin - Athes</title>
+		<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link href="https://api.fontshare.com/css?f[]=general-sans&display=swap" rel="stylesheet" />
+
+		<link rel="stylesheet" type="text/css" href="../../assets/dist/styles.css" />
+
+		<script>
+			;(function (h, o, t, j, a, r) {
+				h.hj =
+					h.hj ||
+					function () {
+						;(h.hj.q = h.hj.q || []).push(arguments)
+					}
+				h._hjSettings = { hjid: 2737397, hjsv: 6 }
+				a = o.getElementsByTagName('head')[0]
+				r = o.createElement('script')
+				r.async = 1
+				r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+				a.appendChild(r)
+			})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+		</script>
+	</head>
+	<body id="adminProductsAdd">
+		<div id="preloader">
+			<img src="../../assets/img/spinner.svg" alt="spinner" />
+		</div>
+
+		<nav class="fixed left-0 z-30 flex flex-col w-full bg-white shadow-xl lg:flex-col lg:h-screen lg:w-52">
+			<div class="flex justify-between px-8 py-4 lg:py-8">
+				<a href="index.html">
+					<img src="/assets/img/logo-big.png" class="w-16 h-16" />
+				</a>
+
+				<button class="lg:hidden" id="toggleAdminNavButton">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+						<path
+							fill-rule="evenodd"
+							d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+							clip-rule="evenodd"
+						/>
+					</svg>
+				</button>
+			</div>
+
+			<div class="hidden h-full lg:flex-col lg:flex" id="toggleAdminNav">
+				<ul class="flex flex-col flex-1 gap-4 pt-4 lg:pt-0">
+					<li>
+						<a href="../products/index.html" class="admin-nav__item admin-nav__item--active">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-5 h-5"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
+								<path
+									d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"
+								/>
+							</svg>
+							Products
+						</a>
+					</li>
+				</ul>
+
+				<ul class="flex flex-col gap-4 pt-8 pb-4 lg:py-8">
+					<li>
+						<button class="admin-nav__item" id="logoutButton">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-5 h-5"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+							Logout
+						</button>
+					</li>
+
+					<li>
+						<a href="/" class="admin-nav__item">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-5 h-5"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+							Home
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="flex flex-col min-h-screen px-5 pt-16 pb-8 overflow-hidden bg-gray-100 lg:pt-0 lg:px-10 lg:ml-52">
+			<main class="flex-1 overflow-x-hidden overflow-y-auto">
+				<div class="flex justify-between p-4 my-6 bg-white rounded shadow-sm">
+					<h1 class="text-2xl font-semibold">Add Product</h1>
+				</div>
+
+				<form class="grid grid-cols-2 gap-4 p-4 bg-white rounded shadow-sm" id="addForm">
+					<div class="form-item">
+						<label for="title" class="form-item__label">Title</label>
+						<input type="text" name="title" id="title" class="form-item__input" />
+						<label for="title" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="price" class="form-item__label">Price</label>
+						<input type="number" name="price" id="price" class="form-item__input" />
+						<label for="price" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="sale_price" class="form-item__label">Sale price</label>
+						<input type="number" name="sale_price" id="sale_price" class="form-item__input" />
+						<label for="sale_price" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="stock" class="form-item__label">Stock</label>
+						<input type="number" name="stock" id="stock" class="form-item__input" />
+						<label for="stock" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="brand" class="form-item__label">Brand</label>
+						<select name="brand" id="brand" class="form-item__input"></select>
+						<label for="brand" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item">
+						<label for="category" class="form-item__label">Category</label>
+						<select name="category" id="category" class="form-item__input"></select>
+						<label for="category" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item form-item--span-full">
+						<label for="image" class="form-item__label">
+							Image
+							<span>(recommended size: 700x400px)</span>
+						</label>
+						<button type="button" id="upload_widget" class="file-upload">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-4 h-4"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+								/>
+							</svg>
+							Upload image
+						</button>
+					</div>
+
+					<div class="form-item form-item--span-full">
+						<label for="description" class="form-item__label">Description</label>
+						<textarea name="description" id="description" class="form-item__textarea"></textarea>
+						<label for="description" class="form-item__error"></label>
+					</div>
+
+					<div class="form-item form-item--span-half">
+						<label for="on_sale" class="toggle__label">On sale</label>
+						<div class="toggle__container">
+							<input type="checkbox" name="on_sale" id="on_sale" value="false" class="toggle__checkbox" />
+							<label for="on_sale" class="toggle__background"></label>
+						</div>
+					</div>
+
+					<div class="form-item form-item--span-half">
+						<label for="featured" class="toggle__label">Featured</label>
+						<div class="toggle__container">
+							<input
+								type="checkbox"
+								name="featured"
+								id="featured"
+								value="false"
+								class="toggle__checkbox"
+							/>
+							<label for="featured" class="toggle__background"></label>
+						</div>
+					</div>
+
+					<div class="form-item form-item--span-full">
+						<button type="submit" class="inline-flex w-full btn">Submit</button>
+					</div>
+
+					<span class="hidden alert" id="alert"></span>
+				</form>
+			</main>
+		</div>
+
+		<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+		<script src="../../assets/js/pages/admin/index.js" type="module"></script>
+		<script src="../../assets/js/pages/admin/products/add.js" type="module"></script>
+	</body>
+</html>

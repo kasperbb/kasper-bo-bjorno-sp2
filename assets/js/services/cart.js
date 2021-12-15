@@ -1,4 +1,5 @@
 import { API_URL } from '../constants/index.js'
+import { CART_ADD_CLASSES, CART_REMOVE_CLASSES } from '../constants/cart.js'
 import { parseHTML } from '../utils/parseHTML.js'
 import { renderIcon } from '../utils/renderIcon.js'
 
@@ -67,13 +68,15 @@ function cartEvent() {
 
 	if (alreadyInCart(id)) {
 		removeFromCart(id)
-		this.classList.remove('remove')
 		if (nonIcon) return this.replaceChildren('Add to Cart')
+		this.classList.add(...CART_ADD_CLASSES)
+		this.classList.remove(...CART_REMOVE_CLASSES)
 		this.replaceChildren(bag, plus)
 	} else {
 		addToCart(id)
-		this.classList.add('remove')
 		if (nonIcon) return this.replaceChildren('Remove from Cart')
+		this.classList.add(...CART_REMOVE_CLASSES)
+		this.classList.remove(...CART_ADD_CLASSES)
 		this.replaceChildren(bag, minus)
 	}
 }

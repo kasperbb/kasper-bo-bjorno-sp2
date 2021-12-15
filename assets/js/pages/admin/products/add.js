@@ -7,22 +7,7 @@ import { getBrands } from '../../../services/brands.js'
 
 const form = document.querySelector('body#adminProductsAdd #addForm')
 const alert = document.querySelector('body#adminProductsAdd #alert')
-const widget = document.querySelector('#upload_widget')
-
-let imageUrl = null
-
-const uploadWidget = cloudinary.createUploadWidget(
-	{
-		cloudName: 'dbpqiu09c',
-		uploadPreset: 'fgnxqjbc',
-	},
-	(error, result) => {
-		if (!error && result && result.event === 'success') {
-			imageUrl = result.info.secure_url
-			widget.textContent += `: ${result.info.original_filename}.${result.info.format}`
-		}
-	}
-)
+const image = document.querySelector('body#adminProductsAdd input[type="file"]')
 
 const setCategories = async () => {
 	const container = document.querySelector('body#adminProductsAdd select[name="category"]')
@@ -59,23 +44,34 @@ const submitForm = async e => {
 
 	if (!valid) return
 
-	const [title, price, sale_price, stock, brand, category, image, description, on_sale, featured] = e.target
+	const formElements = form.elements
+	const formData = new FormData()
+	const data = {}
 
-	const body = {
-		title: title.value,
-		price: price.value,
-		sale_price: sale_price.value,
-		stock: stock.value,
-		brand: +brand.value,
-		category: +category.value,
-		image_url: imageUrl,
-		description: description.value,
-		on_sale: on_sale.checked,
-		featured: featured.checked,
-	}
+	Array.from(formElements).forEach(el => {
+		if (!['submit', 'file'].includes(el.type)) {
+			data[el.name] = el.value
+		}
 
-	const res = await addProduct(body)
+		if (el.type === 'file') {
+			Array.from(el.files).forEach(file => {
+				formData.append(`files.${el.name}`, file, file.name)
+			})
+		}
+	})
+
+	formData.append('data', JSON.stringify(data))
+
+	const res = await addProduct(formData)
+
 	setAlert(res)
+}
+
+const setFileName = e => {
+	const fileName = document.querySelector('#fileName')
+	fileName.textContent = Array.from(e.target.files)
+		.map(el => el.name)
+		.join(', ')
 }
 
 const setAlert = ({ error, message, statusCode, title }) => {
@@ -91,14 +87,8 @@ const setAlert = ({ error, message, statusCode, title }) => {
 }
 
 const setEvents = () => {
-	widget.addEventListener(
-		'click',
-		() => {
-			uploadWidget.open()
-		},
-		false
-	)
 	form.addEventListener('submit', submitForm)
+	image.addEventListener('change', setFileName)
 }
 
 loadPage(setBrands(), setCategories()).then(() => {
