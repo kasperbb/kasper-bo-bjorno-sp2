@@ -11,19 +11,19 @@ const totalContainer = document.querySelector('#total')
 let total = 0
 
 const noItems = parseHTML(`
-<p>No items in your cart.</p>
+	<p class="font-medium">No items in your cart.</p>
 `)
 
 const setCartItems = async () => {
 	const cart = await getCartItems()
 
-	if (!cart) {
+	checkOutOfStock(cart)
+	calculateTotal(cart)
+
+	if (!cart || !cart.length) {
 		container.append(noItems)
 		return loadPage()
 	}
-
-	checkOutOfStock(cart)
-	calculateTotal(cart)
 
 	cart.forEach(product => {
 		const html = parseHTML(productCard(product))
