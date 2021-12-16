@@ -53,8 +53,8 @@ const zoomIn = e => {
 	}
 
 	preview.style.display = 'block'
-	const posX = e.offsetX ? e.offsetX : e.pageX - productImg.offsetLeft
-	const posY = e.offsetY ? e.offsetY : e.pageY - productImg.offsetTop
+	const posX = e.pageX - productImg.offsetLeft
+	const posY = e.pageY - productImg.offsetTop
 	preview.style.backgroundPosition = `${-posX * 1.2}px ${-posY * 0.5}px`
 }
 

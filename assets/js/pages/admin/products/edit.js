@@ -80,10 +80,15 @@ const submitForm = async e => {
 	const formElements = form.elements
 	const formData = new FormData()
 	const data = {}
+	let submitButton = null
 
 	Array.from(formElements).forEach(el => {
 		if (!['submit', 'file'].includes(el.type)) {
 			data[el.name] = el.value
+		}
+
+		if (el.type == 'checkbox') {
+			data[el.name] = el.checked
 		}
 
 		if (el.type === 'file') {
@@ -94,6 +99,8 @@ const submitForm = async e => {
 
 		if (el.type === 'submit') submitButton = el
 	})
+
+	console.log(data)
 
 	formData.append('data', JSON.stringify(data))
 

@@ -56,6 +56,10 @@ const submitForm = async e => {
 			data[el.name] = el.value
 		}
 
+		if (el.type == 'checkbox') {
+			data[el.name] = el.checked
+		}
+
 		if (el.type === 'file') {
 			Array.from(el.files).forEach(file => {
 				formData.append(`files.${el.name}`, file, file.name)

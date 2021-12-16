@@ -17,13 +17,13 @@ const noItems = parseHTML(`
 const setCartItems = async () => {
 	const cart = await getCartItems()
 
-	checkOutOfStock(cart)
-	calculateTotal(cart)
-
 	if (!cart || !cart.length) {
 		container.append(noItems)
 		return loadPage()
 	}
+
+	calculateTotal(cart)
+	checkOutOfStock(cart)
 
 	cart.forEach(product => {
 		const html = parseHTML(productCard(product))
