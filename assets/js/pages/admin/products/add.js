@@ -4,10 +4,12 @@ import { loadPage } from '../../../utils/loadPage.js'
 import { addProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
+import { loadButton } from '../../../utils/loadButton.js'
 
 const form = document.querySelector('body#adminProductsAdd #addForm')
 const alert = document.querySelector('body#adminProductsAdd #alert')
 const image = document.querySelector('body#adminProductsAdd input[type="file"]')
+const fileName = document.querySelector('#fileName')
 
 const setCategories = async () => {
 	const container = document.querySelector('body#adminProductsAdd select[name="category"]')
@@ -47,6 +49,7 @@ const submitForm = async e => {
 	const formElements = form.elements
 	const formData = new FormData()
 	const data = {}
+	let submitButton = null
 
 	Array.from(formElements).forEach(el => {
 		if (!['submit', 'file'].includes(el.type)) {
@@ -58,17 +61,20 @@ const submitForm = async e => {
 				formData.append(`files.${el.name}`, file, file.name)
 			})
 		}
+
+		if (el.type === 'submit') submitButton = el
 	})
 
 	formData.append('data', JSON.stringify(data))
 
+	loadButton.start(submitButton)
 	const res = await addProduct(formData)
+	loadButton.stop(submitButton)
 
 	setAlert(res)
 }
 
 const setFileName = e => {
-	const fileName = document.querySelector('#fileName')
 	fileName.textContent = Array.from(e.target.files)
 		.map(el => el.name)
 		.join(', ')

@@ -6,6 +6,7 @@ import { getProduct } from '../../../services/products.js'
 import { editProduct } from '../../../services/products.js'
 import { getCategories } from '../../../services/categories.js'
 import { getBrands } from '../../../services/brands.js'
+import { loadButton } from '../../../utils/loadButton.js'
 
 const id = new URLSearchParams(window.location.search).get('id')
 
@@ -90,11 +91,15 @@ const submitForm = async e => {
 				formData.append(`files.${el.name}`, file, file.name)
 			})
 		}
+
+		if (el.type === 'submit') submitButton = el
 	})
 
 	formData.append('data', JSON.stringify(data))
 
+	loadButton.start(submitButton)
 	const res = await editProduct(id, formData)
+	loadButton.stop(submitButton)
 
 	setAlert(res)
 }

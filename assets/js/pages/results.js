@@ -12,7 +12,8 @@ const search = params.get('search')
 
 const getSearchResults = async () => {
 	const res = await fetch(
-		API_URL + `/products?_where[_or][0][title_contains]=${search}&_where[_or][1][brand.name_contains]=${search}`
+		API_URL +
+			`/products?_where[_or][0][title_contains]=${search}&_where[_or][1][brand.name_contains]=${search}&_where[_or][2][category.name_contains]=${search}&_where[_or][3][description_contains]=${search}`
 	)
 	const results = await res.json()
 
