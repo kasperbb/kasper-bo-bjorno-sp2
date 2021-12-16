@@ -10,7 +10,9 @@ const categories = document.querySelector('body#home #categoriesContainer')
 const getHeaderImage = async () => {
 	const res = await fetch(API_URL + '/home')
 	const json = await res.json()
-	header.style.backgroundImage = `url(${json.hero_banner.url})`
+	if (json?.hero_banner) {
+		header.style.backgroundImage = `url(${json?.hero_banner.url})`
+	}
 }
 
 loadPage(getHeaderImage(), setProducts('?featured=true', featured), setCategories('?featured=true', categories))

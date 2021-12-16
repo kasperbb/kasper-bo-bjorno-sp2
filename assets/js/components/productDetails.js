@@ -43,7 +43,7 @@ export const productDetails = ({ id, image, image_url, title, description, price
             loading="lazy"
             alt="${title}"
             class="product-details__image cursor-zoom-in"
-            src="${image_url || image?.url || '/assets/img/placeholder.png'}"
+            src="${image?.url || '/assets/img/placeholder.png'}"
             id="productImg"
         />
 
