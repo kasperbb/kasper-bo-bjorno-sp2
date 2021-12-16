@@ -7,8 +7,6 @@ export const getCart = () => {
 	return JSON.parse(localStorage.getItem('cart')) || []
 }
 
-let cartCount = getCart().length
-
 export const getCartCount = () => {
 	return getCart().length
 }
