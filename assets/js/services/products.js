@@ -27,6 +27,11 @@ export const setProducts = async (query, container, isAdmin) => {
 	return products
 }
 
+export const getProductCount = async () => {
+	const res = await fetch(`${API_URL}/products/count`)
+	return await res.json()
+}
+
 export const getProduct = async query => {
 	const res = await fetch(API_URL + query)
 	return await res.json()

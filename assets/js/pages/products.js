@@ -17,10 +17,10 @@ let length = 0
 
 const params = new URLSearchParams(window.location.search)
 const categoryId = params.get('category')
+const brandId = params.get('brand')
 
-if (categoryId) {
-	query.push(`_where[category.id]=${categoryId}`)
-}
+if (categoryId) query.push(`_where[category.id]=${categoryId}`)
+if (brandId) query.push(`_where[brand.id]=${brandId}`)
 
 const getCategories = async () => {
 	const list = document.querySelector('body#products #categoryList')
@@ -48,12 +48,24 @@ const getBrands = async () => {
 	brands.forEach(({ id, name }) => {
 		const html = parseHTML(`
 			<li class="flex items-center gap-1">
-				<input type="checkbox" name="brand_${id}" id="brand_${id}" value="${id}" />
+				<input type="checkbox" name="brand_${id}" id="brand_${id}" value="${id}"
+					${+brandId === +id ? `checked` : ''} 
+				/>
 				<label for="brand_${id}">${name}</label>
 			</li>
 		`)
 		list.append(html)
 	})
+}
+
+const setParams = (key, val) => {
+	params.set(key, val)
+	var newRelativePathQuery = window.location.pathname + '?' + params.toString()
+	history.pushState(null, '', newRelativePathQuery)
+}
+
+const removeParam = key => {
+	params.delete(key)
 }
 
 const reloadProducts = async () => {
@@ -85,22 +97,13 @@ const reloadProducts = async () => {
 const filter = e => {
 	const [type, value, checked] = [e.target.name.split('_')[0], e.target.value, e.target.checked]
 
-	if (type === 'category') {
-		if (checked) {
-			query.push(`_where[category.id]=${value}`)
-		} else {
-			const index = query.indexOf(`_where[category.id]=${value}`)
-			query.splice(index, 1)
-		}
-	}
-
-	if (type === 'brand') {
-		if (checked) {
-			query.push(`_where[brand.id]=${value}`)
-		} else {
-			const index = query.indexOf(`_where[brand.id]=${value}`)
-			query.splice(index, 1)
-		}
+	if (checked) {
+		query.push(`_where[${type}.id]=${value}`)
+		setParams(type, value)
+	} else {
+		const index = query.indexOf(`_where[${type}.id]=${value}`)
+		query.splice(index, 1)
+		removeParam(type)
 	}
 
 	reloadProducts()
