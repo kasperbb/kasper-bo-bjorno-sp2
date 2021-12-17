@@ -3,7 +3,7 @@ import { parseHTML } from '../utils/parseHTML.js'
 import { loadPage } from '../utils/loadPage.js'
 import { setProducts, getProducts } from '../services/products.js'
 import { setCartEvents } from '../services/cart.js'
-import { loader } from '../components/loader.js'
+import { getParam, setParam, removeParam, getParams } from '../services/params.js'
 import { productCard, productCardSkeleton } from '../components/productCard.js'
 
 const container = document.querySelector('body#products #productsContainer')
@@ -15,12 +15,20 @@ let sortVal = ''
 
 let length = 0
 
-const params = new URLSearchParams(window.location.search)
-const categoryId = params.get('category')
-const brandId = params.get('brand')
+const params = getParams()
+const brandIds = []
+const categoryIds = []
 
-if (categoryId) query.push(`_where[category.id]=${categoryId}`)
-if (brandId) query.push(`_where[brand.id]=${brandId}`)
+if (params.length) {
+	params.forEach(param => {
+		const [type, val] = param
+
+		if (type === 'category') categoryIds.push(val)
+		if (type === 'brand') brandIds.push(val)
+
+		query.push(`_where[${type}.id]=${val}`)
+	})
+}
 
 const getCategories = async () => {
 	const list = document.querySelector('body#products #categoryList')
@@ -31,7 +39,7 @@ const getCategories = async () => {
 		const html = parseHTML(`
 			<li class="flex items-center gap-1">
 				<input type="checkbox" name="category_${id}" id="category_${id}" value="${id}" 
-					${+categoryId === +id ? `checked` : ''} 
+					${categoryIds.includes(id.toString()) ? `checked` : ''} 
 				/>
 				<label for="category_${id}">${name}</label>
 			</li>
@@ -49,23 +57,13 @@ const getBrands = async () => {
 		const html = parseHTML(`
 			<li class="flex items-center gap-1">
 				<input type="checkbox" name="brand_${id}" id="brand_${id}" value="${id}"
-					${+brandId === +id ? `checked` : ''} 
+					${brandIds.includes(id.toString()) ? `checked` : ''} 
 				/>
 				<label for="brand_${id}">${name}</label>
 			</li>
 		`)
 		list.append(html)
 	})
-}
-
-const setParams = (key, val) => {
-	params.set(key, val)
-	var newRelativePathQuery = window.location.pathname + '?' + params.toString()
-	history.pushState(null, '', newRelativePathQuery)
-}
-
-const removeParam = key => {
-	params.delete(key)
 }
 
 const reloadProducts = async () => {
@@ -99,11 +97,11 @@ const filter = e => {
 
 	if (checked) {
 		query.push(`_where[${type}.id]=${value}`)
-		setParams(type, value)
+		setParam(type, value)
 	} else {
 		const index = query.indexOf(`_where[${type}.id]=${value}`)
 		query.splice(index, 1)
-		removeParam(type)
+		removeParam(type, value)
 	}
 
 	reloadProducts()
