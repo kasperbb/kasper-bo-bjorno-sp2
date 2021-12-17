@@ -2,12 +2,12 @@ import { CURRENCY_SYMBOL } from '../constants/index.js'
 import { alreadyInCart } from '../services/cart.js'
 import { renderIcon } from '../utils/renderIcon.js'
 
-export const productCard = ({ id, image, image_url, price, sale_price, title, featured, on_sale, stock, brand }) => /*html*/ `
+export const productCard = ({ id, image, price, sale_price, title, featured, on_sale, stock, brand }) => /*html*/ `
     <article class="relative overflow-hidden transition bg-white rounded shadow-lg hover:shadow-xl focus:shadow-xl group">
         ${renderCartButton(id, price, sale_price, on_sale)}
         <a href="product.html?id=${id}" class="z-20">
             <div class="w-full overflow-hidden h-36">
-                ${renderImage(image_url, image)}
+                ${renderImage(image)}
                 <div class="absolute flex gap-2 transition-opacity duration-300 top-2 left-2 group-hover:opacity-0">
                     ${featured ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary">featured</span>' : ''}
                     ${on_sale ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-primary">on sale</span>' : ''}
@@ -64,13 +64,13 @@ const renderCartButton = (id, price, sale_price, on_sale) => {
     `
 }
 
-const renderImage = (image_url, image) => {
-	if (image || image_url) {
+const renderImage = image => {
+	if (image) {
 		return /*html*/ `
             <img
                 loading="lazy"
-                src="${image_url ? image_url : image.url}"
-                alt=""
+                src="${image.url}"
+                alt="${image.alternativeText}"
                 class="object-cover w-full h-full"
             />
         `
@@ -79,8 +79,8 @@ const renderImage = (image_url, image) => {
 	return /*html*/ `
         <img
             loading="lazy"
-            src="${'/assets/img/placeholder.png'}"
-            alt=""
+            src="/assets/img/placeholder.png"
+            alt="No image available"
             class="object-cover w-full h-full"
         />
     `

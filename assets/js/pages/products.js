@@ -3,7 +3,7 @@ import { parseHTML } from '../utils/parseHTML.js'
 import { loadPage } from '../utils/loadPage.js'
 import { setProducts, getProducts } from '../services/products.js'
 import { setCartEvents } from '../services/cart.js'
-import { getParam, setParam, removeParam, getParams } from '../services/params.js'
+import { removeParamsByKey, setParam, removeParam, getParams } from '../services/params.js'
 import { productCard, productCardSkeleton } from '../components/productCard.js'
 
 const container = document.querySelector('body#products #productsContainer')
@@ -119,6 +119,9 @@ const clearForm = e => {
 		el.checked = false
 	})
 	query.splice(0, query.length)
+
+	removeParamsByKey('category')
+	removeParamsByKey('brand')
 
 	reloadProducts()
 }

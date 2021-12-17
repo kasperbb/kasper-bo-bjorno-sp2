@@ -65,18 +65,28 @@ const checkOutOfStock = cart => {
 	if (outOfStockArr.length) {
 		const titles = outOfStockArr.join(', ')
 		html = parseHTML(`
-			<p class="flex items-center gap-2 col-span-4 p-3 bg-red-50 text-red-600 border border-red-200 rounded">
-				${renderIcon('exclamation')}
-				${titles} are out of stock.
-			</p>
+			<div class="alert alert--error flex justify-between text-base" id="alert" role="alert">
+				<p class="flex items-center gap-2">
+					${renderIcon('exclamation')}
+					${titles} are out of stock.
+				</p>
+				<button class="text-sm font-medium bg-red-500 text-white p-2 rounded">Close</button>
+			</div>
 		`)
 		stockWarning.replaceChildren(html)
+
+		const alert = document.querySelector('#alert')
+		alert.children[1].addEventListener('click', () => {
+			alert.remove()
+		})
 	}
 }
 
 function setEvents() {
 	const cart = getCart()
 	this.parentElement.remove()
+
+	console.log(cart)
 
 	total -= +this.dataset.price
 	setTotal(total)

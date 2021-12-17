@@ -3,21 +3,27 @@ export const getParam = key => params.get(key)
 
 export const setParam = (key, val) => {
 	params.append(key, val)
-	const newRelativePathQuery = window.location.pathname + '?' + params.toString()
-	history.pushState(null, '', newRelativePathQuery)
+	const newQueryPath = window.location.pathname + '?' + params.toString()
+	history.pushState(null, '', newQueryPath)
 }
 
 export const removeParam = (key, value) => {
-	const arr = params.getAll(key).filter(el => el !== value)
+	const allParams = params.getAll(key).filter(el => el !== value)
 
 	params.delete(key)
 
-	arr.forEach(el => {
+	allParams.forEach(el => {
 		params.append(key, el)
 	})
 
-	const newRelativePathQuery = window.location.pathname + '?' + params.toString()
-	history.pushState(null, '', newRelativePathQuery)
+	const newQueryPath = window.location.pathname + '?' + params.toString()
+	history.pushState(null, '', newQueryPath)
+}
+
+export const removeParamsByKey = key => {
+	params.delete(key)
+	const newQueryPath = window.location.pathname + '?' + params.toString()
+	history.pushState(null, '', newQueryPath)
 }
 
 export const getParams = () => {

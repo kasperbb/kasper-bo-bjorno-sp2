@@ -1,12 +1,11 @@
 import { renderIcon } from '../utils/renderIcon.js'
 
-export const adminProductCard = ({ id, image, image_url, title, price }) => /*html*/ `
+export const adminProductCard = ({ id, image, title, price }) => /*html*/ `
     <div
         class="
             flex
             justify-between
             bg-white
-            dark:bg-gray-600
             shadow-sm
             rounded
             overflow-hidden
@@ -14,7 +13,7 @@ export const adminProductCard = ({ id, image, image_url, title, price }) => /*ht
     >
         <div class="flex justify-between items-center w-full">
             <div class="flex">
-                ${renderImage(image_url, image)}
+                ${renderImage(image)}
     
                 <div class="p-4 flex flex-col capitalize">
                     <a href="./edit.html?id=${id}" class="font-semibold text-lg">${title}</a>
@@ -32,14 +31,14 @@ export const adminProductCard = ({ id, image, image_url, title, price }) => /*ht
         </div>
     </div>
 `
-const renderImage = (image_url, image) => {
-	if (image || image_url) {
+const renderImage = image => {
+	if (image) {
 		return /*html*/ `
             <img
                 loading="lazy"
                 class="h-28 w-28 object-cover"
-                src="${image_url ? image_url : image.url}"
-                alt=""
+                src="${image.url}"
+                alt="${image.alternativeText}"
             />
         `
 	}
@@ -49,7 +48,7 @@ const renderImage = (image_url, image) => {
             loading="lazy"
             class="h-28 w-28 object-cover"
             src="/assets/img/placeholder.png"
-            alt=""
+            alt="No image available"
         />
     `
 }

@@ -1,7 +1,7 @@
 import { CURRENCY_SYMBOL } from '../constants/index.js'
 import { alreadyInCart } from '../services/cart.js'
 
-export const productDetails = ({ id, image, image_url, title, description, price, sale_price, on_sale, category, brand, stock }) => /*html*/ `
+export const productDetails = ({ id, image, title, description, price, sale_price, on_sale, category, brand, stock }) => /*html*/ `
     <div class="product-details">
         <nav aria-label="Breadcrumb" class="md:col-span-2">
             <ol role="list" class="flex items-center text-sm">
@@ -41,7 +41,7 @@ export const productDetails = ({ id, image, image_url, title, description, price
 
         <img
             loading="lazy"
-            alt="${title}"
+            alt="${image.alternativeText}"
             class="product-details__image cursor-zoom-in"
             src="${image?.url || '/assets/img/placeholder.png'}"
             id="productImg"
