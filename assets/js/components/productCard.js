@@ -9,8 +9,8 @@ export const productCard = ({ id, image, image_url, price, sale_price, title, fe
             <div class="w-full overflow-hidden h-36">
                 ${renderImage(image_url, image)}
                 <div class="absolute flex gap-2 transition-opacity duration-300 top-2 left-2 group-hover:opacity-0">
-                    ${featured ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-green-500">featured</span>' : ''}
-                    ${on_sale ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary">on sale</span>' : ''}
+                    ${featured ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary">featured</span>' : ''}
+                    ${on_sale ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-primary">on sale</span>' : ''}
                     ${
 						stock <= 0
 							? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-red-500">out of stock</span>'

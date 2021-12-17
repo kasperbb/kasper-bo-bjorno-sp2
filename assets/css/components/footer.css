@@ -10,7 +10,7 @@
 	}
 
 	&__copyright {
-		@apply text-xs text-gray-400 font-primary md:text-base;
+		@apply text-xs text-gray-600 font-primary md:text-base;
 	}
 
 	&__links {
