@@ -97,7 +97,7 @@ const renderSearchBar = () => /*html*/ `
             placeholder="Search"
             class="flex-grow pl-4 rounded-l text-sm focus:outline-none"
         />
-        <button type="submit">
+        <button type="submit" aria-label="Search">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="m-3 text-lg text-gray-500 w-4 h-4"

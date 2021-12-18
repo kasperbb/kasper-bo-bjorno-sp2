@@ -10,17 +10,17 @@ export const productCard = ({ id, image, price, sale_price, title, featured, on_
                 ${renderImage(image)}
                 <div class="absolute flex gap-2 transition-opacity duration-300 top-2 left-2 group-hover:opacity-0">
                     ${featured ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-secondary">featured</span>' : ''}
-                    ${on_sale ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-primary">on sale</span>' : ''}
+                    ${on_sale ? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-primary-dark">on sale</span>' : ''}
                     ${
 						stock <= 0
-							? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-red-500">out of stock</span>'
+							? '<span class="px-2 py-1 text-xs font-semibold text-white uppercase rounded-full font-cta bg-red-700">out of stock</span>'
 							: ''
 					}
                 </div>
             </div>
             <div class="p-6">
                 <p class="flex-1 text-xs uppercase font-primary">${brand?.name}</p>
-                <h4 class="mt-1 text-base font-semibold text-secondary">${title}</h4>
+                <p class="mt-1 text-base font-semibold text-secondary">${title}</p>
                 <div class="flex items-center">
                     ${renderPrice(price, sale_price, on_sale)}
                 </div>
@@ -89,10 +89,10 @@ const renderImage = image => {
 const renderPrice = (price, sale_price, on_sale) => {
 	if (sale_price && on_sale) {
 		return `
-            <p class="product__price">${CURRENCY_SYMBOL}${sale_price}</p>
-            <del class="product__sale">${CURRENCY_SYMBOL}${price}</del>
+            <p class="inline-block mr-1 text-sm font-medium font-primary">${CURRENCY_SYMBOL}${sale_price}</p>
+            <del class="text-xs text-red-700 font-primary">${CURRENCY_SYMBOL}${price}</del>
         `
 	}
 
-	return `<p class="product__price">${CURRENCY_SYMBOL}${price}</p>`
+	return `<p class="inline-block mr-1 text-sm font-medium font-primary">${CURRENCY_SYMBOL}${price}</p>`
 }
