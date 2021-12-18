@@ -35,7 +35,6 @@ const renderImage = image => {
 	if (image) {
 		return /*html*/ `
             <img
-                loading="lazy"
                 class="h-28 w-28 object-cover"
                 src="${image.url}"
                 alt="${image.alternativeText}"
@@ -45,7 +44,6 @@ const renderImage = image => {
 
 	return /*html*/ `
         <img
-            loading="lazy"
             class="h-28 w-28 object-cover"
             src="/assets/img/placeholder.png"
             alt="No image available"

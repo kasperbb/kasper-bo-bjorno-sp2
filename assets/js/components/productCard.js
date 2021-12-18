@@ -68,7 +68,6 @@ const renderImage = image => {
 	if (image) {
 		return /*html*/ `
             <img
-                loading="lazy"
                 src="${image.url}"
                 alt="${image.alternativeText}"
                 class="object-cover w-full h-full"
@@ -78,7 +77,6 @@ const renderImage = image => {
 
 	return /*html*/ `
         <img
-            loading="lazy"
             src="/assets/img/placeholder.png"
             alt="No image available"
             class="object-cover w-full h-full"

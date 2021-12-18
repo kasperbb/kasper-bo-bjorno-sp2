@@ -4,7 +4,6 @@ export const category = ({ id, name, image }) => /*html*/ `
         class="relative flex items-center justify-center overflow-hidden text-center bg-gray-300 rounded-md  group"
     >
         <img
-            loading="lazy"
             alt="${name} category"
             src="${image?.url || '/assets/img/placeholder.png'}"
             class="object-cover w-full h-80 transition duration-500 ease-in-out transform rounded-md  group-hover:rotate-6 group-hover:scale-125"

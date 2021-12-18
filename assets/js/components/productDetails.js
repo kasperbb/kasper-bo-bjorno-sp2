@@ -40,7 +40,6 @@ export const productDetails = ({ id, image, title, description, price, sale_pric
         </nav>
 
         <img
-            loading="lazy"
             alt="${image.alternativeText}"
             class="product-details__image cursor-zoom-in"
             src="${image?.url || '/assets/img/placeholder.png'}"
